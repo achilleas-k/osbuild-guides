@@ -1,6 +1,6 @@
 # osbuild-composer
 
-It is a web service for building OS images. The core of `osbuild-composer`, which is common to all APIs, is osbuild manifests generation a job queuing. If an operating system is to be supported by `osbuild-composer`, it needs the manifest generation code in `internal/distro` directory. So far, we only focus on RPM based distributions, such as Fedora and RHEL. The queuing mechanism is under heavy development at the moment.
+It is a web service for building OS images. The core of `osbuild-composer`, which is common to all APIs, is osbuild manifests generation and job queuing. If an operating system is to be supported by `osbuild-composer`, it needs the manifest generation code in `internal/distro` directory. So far, we only focus on RPM based distributions, such as Fedora and RHEL. The queuing mechanism is under heavy development at the moment.
 
 
 
