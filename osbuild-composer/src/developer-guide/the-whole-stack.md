@@ -102,9 +102,14 @@ The certificates and keys are generated before starting the containers and are s
 
 ### 3. Generate certificates
 
+The [`gen-certs.sh`][gen-certs.sh] script in the `tools/` directory of the osbuild-composer repository can generate all the certificates and keys that we need.
+Use it with the [`openssl.cnf`][openssl.cnf] configuration file in the `test/data/` directory of the same repository to generate test certificates.
 
-
-
+Assuming the current working directory is the root of the osbuild-composer repository:
+```bash
+./tools/gen-certs.sh ./test/data/openssl.cnf <devel>/config <devel>/config/ca
+```
+The `<devel>/config` directory will be added to each container that needs the certificates, so make note of where the certs were created.
 
 This document describes how all the components of the entire OSBuild + Image Builder stack fit together.
 This is not meant as a guide for setting up or deploying the stack, but instead a description of the requirements for such a setup.
@@ -189,3 +194,5 @@ OSBuild Composer supports requests through three APIs:
 [guides/osbuild-composer]: osbuild-composer.html
 [github/osbuild-composer]: https://github.com/osbuild/osbuild-composer
 [github/image-builder]: https://github.com/osbuild/image-builder
+[gen-certs.sh]: https://github.com/osbuild/osbuild-composer/blob/main/tools/gen-certs.sh
+[openssl.cnf]: https://github.com/osbuild/osbuild-composer/blob/main/test/data/x509/openssl.cnf
