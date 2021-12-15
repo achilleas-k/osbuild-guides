@@ -16,6 +16,7 @@
   - [Code style](./developer-guide/code-style.md)
   - [OSBuild](./developer-guide/osbuild.md)
   - [osbuild-composer](./developer-guide/osbuild-composer.md)
+  - [The Image Builder stack](./developer-guide/the-whole-stack.md)
   - [Latest RPM builds](./developer-guide/latest-rpm-builds.md)
   - [Testing strategy](./developer-guide/testing.md)
   - [Releasing](./developer-guide/releasing.md)
