@@ -1,0 +1,657 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Image Builder service architecture - OSBuild guides</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../user-guide/user-guide.html"><strong aria-hidden="true">2.</strong> User guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../user-guide/osbuild-composer-description.html"><strong aria-hidden="true">2.1.</strong> osbuild-composer description</a></li><li class="chapter-item expanded "><a href="../user-guide/installation.html"><strong aria-hidden="true">2.2.</strong> Installation and configuration</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../user-guide/managing-repositories.html"><strong aria-hidden="true">2.2.1.</strong> Managing repositories</a></li><li class="chapter-item expanded "><a href="../user-guide/container-auth.html"><strong aria-hidden="true">2.2.2.</strong> Container registry credentials</a></li></ol></li><li class="chapter-item expanded "><a href="../user-guide/building-an-image-from-cli.html"><strong aria-hidden="true">2.3.</strong> Creating images with the CLI interface</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../user-guide/building-ostree-images.html"><strong aria-hidden="true">2.3.1.</strong> Building OSTree image</a></li><li class="chapter-item expanded "><a href="../user-guide/edge-container+installer.html"><strong aria-hidden="true">2.3.2.</strong> Building OSTree container and installer</a></li></ol></li><li class="chapter-item expanded "><a href="../user-guide/uploading-to-cloud.html"><strong aria-hidden="true">2.4.</strong> Uploading cloud images</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../user-guide/uploading-to-aws.html"><strong aria-hidden="true">2.4.1.</strong> Uploading an image to AWS</a></li><li class="chapter-item expanded "><a href="../user-guide/uploading-to-aws-s3.html"><strong aria-hidden="true">2.4.2.</strong> Uploading an image to AWS S3</a></li><li class="chapter-item expanded "><a href="../user-guide/uploading-to-gcp.html"><strong aria-hidden="true">2.4.3.</strong> Uploading an image to GCP</a></li><li class="chapter-item expanded "><a href="../user-guide/uploading-to-generic-s3.html"><strong aria-hidden="true">2.4.4.</strong> uploading an image to Generic S3</a></li><li class="chapter-item expanded "><a href="../user-guide/uploading-to-azure.html"><strong aria-hidden="true">2.4.5.</strong> Uploading an image to Microsoft Azure</a></li><li class="chapter-item expanded "><a href="../user-guide/uploading-to-oci.html"><strong aria-hidden="true">2.4.6.</strong> Uploading an image to OCI</a></li></ol></li><li class="chapter-item expanded "><a href="../user-guide/uploading-to-registry.html"><strong aria-hidden="true">2.5.</strong> Uploading container images</a></li><li class="chapter-item expanded "><a href="../user-guide/oscap-remediation.html"><strong aria-hidden="true">2.6.</strong> OpenSCAP image remediation</a></li><li class="chapter-item expanded "><a href="../user-guide/repository-customizations.html"><strong aria-hidden="true">2.7.</strong> Repository customizations</a></li></ol></li><li class="chapter-item expanded "><a href="../blueprint-reference/blueprint-reference.html"><strong aria-hidden="true">3.</strong> Blueprint Reference</a></li><li class="chapter-item expanded "><a href="../image-builder-service/architecture.html" class="active"><strong aria-hidden="true">4.</strong> Image Builder service architecture</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../image-builder-service/image-builder-crc.html"><strong aria-hidden="true">4.1.</strong> Backend</a></li><li class="chapter-item expanded "><a href="../image-builder-service/image-builder-composer.html"><strong aria-hidden="true">4.2.</strong> Composer</a></li><li class="chapter-item expanded "><a href="../image-builder-service/image-builder-workers.html"><strong aria-hidden="true">4.3.</strong> Workers</a></li><li class="chapter-item expanded "><a href="../image-builder-service/image-builder-koji.html"><strong aria-hidden="true">4.4.</strong> Koji integration</a></li></ol></li><li class="chapter-item expanded "><a href="../developer-guide/developer-guide.html"><strong aria-hidden="true">5.</strong> Developer guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../developer-guide/workflow.html"><strong aria-hidden="true">5.1.</strong> Workflow</a></li><li class="chapter-item expanded "><a href="../developer-guide/code-style.html"><strong aria-hidden="true">5.2.</strong> Code style</a></li><li class="chapter-item expanded "><a href="../developer-guide/osbuild.html"><strong aria-hidden="true">5.3.</strong> OSBuild</a></li><li class="chapter-item expanded "><a href="../developer-guide/osbuild-composer.html"><strong aria-hidden="true">5.4.</strong> osbuild-composer</a></li><li class="chapter-item expanded "><a href="../developer-guide/latest-rpm-builds.html"><strong aria-hidden="true">5.5.</strong> Latest RPM builds</a></li><li class="chapter-item expanded "><a href="../developer-guide/testing.html"><strong aria-hidden="true">5.6.</strong> Testing strategy</a></li><li class="chapter-item expanded "><a href="../developer-guide/releasing.html"><strong aria-hidden="true">5.7.</strong> Releasing</a></li><li class="chapter-item expanded "><a href="../developer-guide/glossary.html"><strong aria-hidden="true">5.8.</strong> Glossary</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">OSBuild guides</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h2 id="current-architecture"><a class="header" href="#current-architecture">Current architecture</a></h2>
+<p>This diagram shows the overall architecture, and each sub-section goes into details about the three main
+components, which are run as independent services.</p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<p><svg
+   id="artwork"
+   viewBox="0 0 760 311.63"
+   version="1.1"
+   sodipodi:docname="306_OpenShift_OSBuild_upstream_0123.svg"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+&lt;sodipodi:namedview
+id=&quot;namedview177&quot;
+pagecolor=&quot;#ffffff&quot;
+bordercolor=&quot;#666666&quot;
+borderopacity=&quot;1.0&quot;
+inkscape:showpageshadow=&quot;2&quot;
+inkscape:pageopacity=&quot;0.0&quot;
+inkscape:pagecheckerboard=&quot;0&quot;
+inkscape:deskcolor=&quot;#d1d1d1&quot;
+showgrid=&quot;false&quot;
+inkscape:zoom=&quot;1.7118421&quot;
+inkscape:cx=&quot;287.99385&quot;
+inkscape:cy=&quot;155.97233&quot;
+inkscape:window-width=&quot;2560&quot;
+inkscape:window-height=&quot;1371&quot;
+inkscape:window-x=&quot;0&quot;
+inkscape:window-y=&quot;0&quot;
+inkscape:window-maximized=&quot;1&quot;
+inkscape:current-layer=&quot;artwork&quot; /&gt;
+<defs
+     id="defs4">
+<style
+       id="style2">
+.cls-1, .cls-2, .cls-3 {
+fill: none;
+}
+.cls-2 {
+stroke: #06c;
+}
+.cls-2, .cls-4 {
+stroke-linecap: round;
+stroke-linejoin: round;
+}
+.cls-5 {
+fill: #06c;
+}
+.cls-6, .cls-4 {
+fill: #fff;
+}
+.cls-7 {
+fill: #e8e8e8;
+}
+.cls-8, .cls-9 {
+font-family: RedHatTextRoman-Medium, 'Red Hat Text';
+font-variation-settings: 'wght' 500;
+font-weight: 500;
+}
+.cls-8, .cls-10, .cls-11 {
+fill: #151515;
+font-size: 12px;
+}
+.cls-12 {
+fill: #ececec;
+font-size: 10px;
+}
+.cls-12, .cls-13 {
+font-family: RedHatTextRoman-Regular, 'Red Hat Text';
+font-variation-settings: 'wght' 400;
+}
+.cls-3 {
+stroke: #adadad;
+stroke-miterlimit: 10;
+}
+.cls-4 {
+stroke: #5b5b5b;
+stroke-width: 1.5px;
+}
+.cls-11 {
+font-family: RedHatTextRoman-Bold, 'Red Hat Text';
+font-variation-settings: 'wght' 700;
+font-weight: 700;
+}
+</style>
+</defs>
+<g
+     id="g12">
+<text
+       class="cls-12"
+       transform="translate(715.77 294.65)"
+       id="text8"><tspan
+         x="0"
+         y="0"
+         id="tspan6">306_0123</tspan></text>
+<rect
+       class="cls-1"
+       y="271.63"
+       width="760"
+       height="40"
+       id="rect10" />
+</g>
+<g
+     id="g20">
+<rect
+       class="cls-7"
+       x="575"
+       y="20"
+       width="185"
+       height="114.5"
+       transform="translate(1335 154.5) rotate(-180)"
+       id="rect14" />
+<text
+       class="cls-11"
+       transform="translate(590 43.85)"
+       id="text18"><tspan
+         x="0"
+         y="0"
+         id="tspan16">AmazonEC2</tspan></text>
+</g>
+<rect
+     class="cls-7"
+     x="375"
+     y="20"
+     width="175"
+     height="114.5"
+     transform="translate(925 154.5) rotate(-180)"
+     id="rect22" />
+<text
+     class="cls-11"
+     transform="translate(390 43.85)"
+     id="text26"><tspan
+       x="0"
+       y="0"
+       id="tspan24">api.openshift.com</tspan></text>
+<a
+     id="a403"
+     xlink:href="https://github.com/osbuild/osbuild-composer/tree/c18f2962aeb28f3b8b054085529b9f3b0d7e9677">
+<g
+       id="g40">
+<g
+         id="g32">
+<rect
+           class="cls-6"
+           x="390.5"
+           y="60"
+           width="144"
+           height="49"
+           id="rect28" />
+<path
+           class="cls-5"
+           d="M534,60.5v48h-143V60.5h143m1-1h-145v50h145V59.5h0Z"
+           id="path30" />
+</g>
+<text
+         class="cls-8"
+         transform="translate(420.17 81.44)"
+         id="text38"><tspan
+           x="0"
+           y="0"
+           id="tspan34">image-builder-</tspan><tspan
+           x="14.45"
+           y="13"
+           id="tspan36">composer</tspan></text>
+</g>
+</a>
+<rect
+     class="cls-7"
+     x="375"
+     y="159.5"
+     width="175"
+     height="135"
+     transform="translate(925 454) rotate(-180)"
+     id="rect42" />
+<rect
+     class="cls-7"
+     x="175"
+     y="159.5"
+     width="175"
+     height="135"
+     transform="translate(525 454) rotate(-180)"
+     id="rect44" />
+<text
+     class="cls-11"
+     transform="translate(390 279.57)"
+     id="text48"><tspan
+       x="0"
+       y="0"
+       id="tspan46">AmazonRDS</tspan></text>
+<text
+     class="cls-11"
+     transform="translate(190 279.57)"
+     id="text52"><tspan
+       x="0"
+       y="0"
+       id="tspan50">AmazonRDS</tspan></text>
+<rect
+     class="cls-7"
+     x="0"
+     y="20"
+     width="350"
+     height="114.5"
+     transform="translate(350 154.5) rotate(-180)"
+     id="rect54" />
+<g
+     id="g76">
+<g
+       id="g64">
+<path
+         class="cls-4"
+         d="M262.5,184.25c-10.19,0-18.45,4.06-18.45,9.69v16.94c0,5.63,8.26,10.19,18.45,10.19s18.45-4.56,18.45-10.19v-16.94c0-5.63-8.26-9.69-18.45-9.69Z"
+         id="path56" />
+<path
+         class="cls-4"
+         d="M280.95,205.19c0,5.63-8.26,10.19-18.45,10.19s-18.45-4.56-18.45-10.19"
+         id="path58" />
+<path
+         class="cls-4"
+         d="M280.95,199.44c0,5.63-8.26,10.19-18.45,10.19s-18.45-4.56-18.45-10.19"
+         id="path60" />
+<path
+         class="cls-4"
+         d="M280.95,193.94c0,5.63-8.26,10.19-18.45,10.19s-18.45-4.56-18.45-10.19,8.26-9.69,18.45-9.69,18.45,4.06,18.45,9.69Z"
+         id="path62" />
+</g>
+<text
+       class="cls-10"
+       transform="translate(212.83 238.72)"
+       id="text74"><tspan
+         class="cls-9"
+         id="tspan68"><tspan
+           x="0"
+           y="0"
+           id="tspan66">image-builder-db</tspan></tspan><tspan
+         class="cls-13"
+         id="tspan72"><tspan
+           x="1.16"
+           y="15"
+           id="tspan70">(Insights account)</tspan></tspan></text>
+</g>
+<g
+     id="g82">
+<line
+       class="cls-2"
+       x1="180.83"
+       y1="84.5"
+       x2="165.01"
+       y2="84.5"
+       id="line78" />
+<polygon
+       class="cls-5"
+       points="179.37 79.51 188.01 84.5 179.37 89.49 179.37 79.51"
+       id="polygon80" />
+</g>
+<g
+     id="g88">
+<line
+       class="cls-2"
+       x1="262.5"
+       y1="173.79"
+       x2="262.5"
+       y2="109.5"
+       id="line84" />
+<polygon
+       class="cls-5"
+       points="267.49 172.34 262.5 180.97 257.51 172.34 267.49 172.34"
+       id="polygon86" />
+</g>
+<g
+     id="g110">
+<g
+       id="g98">
+<path
+         class="cls-4"
+         d="M462.5,184.25c-10.19,0-18.45,4.06-18.45,9.69v16.94c0,5.63,8.26,10.19,18.45,10.19s18.45-4.56,18.45-10.19v-16.94c0-5.63-8.26-9.69-18.45-9.69Z"
+         id="path90" />
+<path
+         class="cls-4"
+         d="M480.95,205.19c0,5.63-8.26,10.19-18.45,10.19s-18.45-4.56-18.45-10.19"
+         id="path92" />
+<path
+         class="cls-4"
+         d="M480.95,199.44c0,5.63-8.26,10.19-18.45,10.19s-18.45-4.56-18.45-10.19"
+         id="path94" />
+<path
+         class="cls-4"
+         d="M480.95,193.94c0,5.63-8.26,10.19-18.45,10.19s-18.45-4.56-18.45-10.19,8.26-9.69,18.45-9.69,18.45,4.06,18.45,9.69Z"
+         id="path96" />
+</g>
+<text
+       class="cls-10"
+       transform="translate(424.51 238.72)"
+       id="text108"><tspan
+         class="cls-9"
+         id="tspan102"><tspan
+           x="0"
+           y="0"
+           id="tspan100">composer-db</tspan></tspan><tspan
+         class="cls-13"
+         id="tspan106"><tspan
+           x="-12.14"
+           y="15"
+           id="tspan104">(AppSRE account)</tspan></tspan></text>
+</g>
+<g
+     id="g116">
+<line
+       class="cls-2"
+       x1="462.5"
+       y1="173.79"
+       x2="462.5"
+       y2="109.5"
+       id="line112" />
+<polygon
+       class="cls-5"
+       points="467.49 172.34 462.5 180.97 457.51 172.34 467.49 172.34"
+       id="polygon114" />
+</g>
+<g
+     id="g122">
+<line
+       class="cls-2"
+       x1="380.32"
+       y1="84.5"
+       x2="335"
+       y2="84.5"
+       id="line118" />
+<polygon
+       class="cls-5"
+       points="378.86 79.51 387.5 84.5 378.86 89.49 378.86 79.51"
+       id="polygon120" />
+</g>
+<g
+     id="g128">
+<line
+       class="cls-2"
+       x1="590"
+       y1="84.5"
+       x2="544.68"
+       y2="84.5"
+       id="line124" />
+<polygon
+       class="cls-5"
+       points="546.14 79.51 537.5 84.5 546.14 89.49 546.14 79.51"
+       id="polygon126" />
+</g>
+<text
+     class="cls-11"
+     transform="translate(15 43.85)"
+     id="text132"><tspan
+       x="0"
+       y="0"
+       id="tspan130">console.redhat.com</tspan></text>
+<a
+     id="a294"
+     xlink:href="https://github.com/RedHatInsights/image-builder-frontend/tree/d0024a8d48eece8eb5618ca03d8c7dce07fd347e">
+<g
+       id="g146"
+       onclick="https://github.com/RedHatInsights/image-builder-frontend/tree/d0024a8d48eece8eb5618ca03d8c7dce07fd347e">
+<g
+         id="g138">
+<rect
+           class="cls-6"
+           x="15.5"
+           y="60"
+           width="149"
+           height="49"
+           id="rect134" />
+<path
+           class="cls-5"
+           d="M164,60.5v48H16V60.5H164m1-1H15v50H165V59.5h0Z"
+           id="path136" />
+</g>
+<text
+         class="cls-8"
+         transform="translate(50.17 81.44)"
+         id="text144"><tspan
+           x="0"
+           y="0"
+           id="tspan140">image-builder-</tspan><tspan
+           x="17.37"
+           y="13"
+           id="tspan142">frontend</tspan></text>
+</g>
+</a>
+<polyline
+     class="cls-3"
+     points="595 114.5 740 114.5 740 64.5"
+     id="polyline148" />
+<polyline
+     class="cls-3"
+     points="600 119.5 745 119.5 745 69.5"
+     id="polyline150" />
+<a
+     id="a510"
+     xlink:href="https://github.com/osbuild/osbuild/tree/76a80bd8c590dba4480305efcb067145db3bf347">
+<g
+       id="g502">
+<g
+         id="g156">
+<rect
+           class="cls-6"
+           x="590.5"
+           y="60"
+           width="144"
+           height="49"
+           id="rect152" />
+<path
+           class="cls-5"
+           d="M734,60.5v48h-143V60.5h143m1-1h-145v50h145V59.5h0Z"
+           id="path154" />
+</g>
+<text
+         class="cls-8"
+         transform="translate(628.43 88)"
+         id="text160"><tspan
+           x="0"
+           y="0"
+           id="tspan158">worker fleet</tspan></text>
+</g>
+</a>
+<a
+     id="a303"
+     xlink:href="https://github.com/osbuild/image-builder/tree/2449d8839a8d485034ebf51db449a5a3dcd540b6">
+<g
+       id="g174">
+<g
+         id="g166">
+<rect
+           class="cls-6"
+           x="190.5"
+           y="60"
+           width="144"
+           height="49"
+           id="rect162" />
+<path
+           class="cls-5"
+           d="M334,60.5v48H191V60.5h143m1-1H190v50h145V59.5h0Z"
+           id="path164" />
+</g>
+<text
+         class="cls-8"
+         transform="translate(220.17 81.44)"
+         id="text172"><tspan
+           x="0"
+           y="0"
+           id="tspan168">image-builder-</tspan><tspan
+           x="18.4"
+           y="13"
+           id="tspan170">backend</tspan></text>
+</g>
+</a>
+</svg></p>
+<p>The metadata defining the service for App-Interface is kept upstream and open as templates for both the <a href="https://github.com/osbuild/osbuild-composer/blob/main/templates/composer.yml">osbuild-composer</a> and <a href="https://github.com/osbuild/image-builder/blob/main/templates/image-builder.yml">image-builder components</a>.
+The tooling to operate the service is to large parts open source and publicly accessible, e.g. qontract in the form of <a href="https://github.com/app-sre/qontract-server">qontract-server</a>, <a href="https://github.com/app-sre/qontract-reconcile">qontract-reconcile</a>.
+The architecture documents in this section comply with the AppSRE contract.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../blueprint-reference/blueprint-reference.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../image-builder-service/image-builder-crc.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../blueprint-reference/blueprint-reference.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../image-builder-service/image-builder-crc.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

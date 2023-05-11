@@ -5,8 +5,10 @@
         <meta charset="UTF-8">
         <title>OSBuild guides</title>
         <meta name="robots" content="noindex" />
+
+
         <!-- Custom HTML head -->
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
@@ -17,25 +19,29 @@
         <link rel="stylesheet" href="css/general.css">
         <link rel="stylesheet" href="css/chrome.css">
         <link rel="stylesheet" href="css/print.css" media="print">
+
         <!-- Fonts -->
         <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
         <link rel="stylesheet" href="fonts/fonts.css">
+
         <!-- Highlight.js Stylesheets -->
         <link rel="stylesheet" href="highlight.css">
         <link rel="stylesheet" href="tomorrow-night.css">
         <link rel="stylesheet" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
+
     </head>
     <body>
+    <div id="body-container">
         <!-- Provide site root to javascript -->
-        <script type="text/javascript">
+        <script>
             var path_to_root = "";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
 
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
-        <script type="text/javascript">
+        <script>
             try {
                 var theme = localStorage.getItem('mdbook-theme');
                 var sidebar = localStorage.getItem('mdbook-sidebar');
@@ -51,7 +57,7 @@
         </script>
 
         <!-- Set the theme before any content is loaded, prevents flash -->
-        <script type="text/javascript">
+        <script>
             var theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
@@ -63,12 +69,14 @@
         </script>
 
         <!-- Hide / unhide sidebar before it is displayed -->
-        <script type="text/javascript">
+        <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -76,7 +84,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="user-guide/user-guide.html"><strong aria-hidden="true">1.</strong> User guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="user-guide/osbuild-composer-description.html"><strong aria-hidden="true">1.1.</strong> osbuild-composer description</a></li><li class="chapter-item expanded "><a href="user-guide/installation.html"><strong aria-hidden="true">1.2.</strong> Installation and configuration</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="user-guide/managing-repositories.html"><strong aria-hidden="true">1.2.1.</strong> Managing repositories</a></li></ol></li><li class="chapter-item expanded "><a href="user-guide/building-an-image-from-cli.html"><strong aria-hidden="true">1.3.</strong> Creating images with the CLI interface</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="user-guide/building-ostree-images.html"><strong aria-hidden="true">1.3.1.</strong> Building OSTree image</a></li><li class="chapter-item expanded "><a href="user-guide/edge-container+installer.html"><strong aria-hidden="true">1.3.2.</strong> Building OSTree container and installer</a></li></ol></li><li class="chapter-item expanded "><a href="user-guide/uploading-to-cloud.html"><strong aria-hidden="true">1.4.</strong> Uploading cloud images</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="user-guide/uploading-to-aws.html"><strong aria-hidden="true">1.4.1.</strong> Uploading an image to AWS</a></li><li class="chapter-item expanded "><a href="user-guide/uploading-to-azure.html"><strong aria-hidden="true">1.4.2.</strong> Uploading an image to Microsoft Azure</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="blueprint-reference/blueprint-reference.html"><strong aria-hidden="true">2.</strong> Blueprint reference</a></li><li class="chapter-item expanded "><a href="developer-guide/developer-guide.html"><strong aria-hidden="true">3.</strong> Developer guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="developer-guide/workflow.html"><strong aria-hidden="true">3.1.</strong> Workflow</a></li><li class="chapter-item expanded "><a href="developer-guide/code-style.html"><strong aria-hidden="true">3.2.</strong> Code style</a></li><li class="chapter-item expanded "><a href="developer-guide/osbuild.html"><strong aria-hidden="true">3.3.</strong> OSBuild</a></li><li class="chapter-item expanded "><a href="developer-guide/osbuild-composer.html"><strong aria-hidden="true">3.4.</strong> osbuild-composer</a></li><li class="chapter-item expanded "><a href="developer-guide/latest-rpm-builds.html"><strong aria-hidden="true">3.5.</strong> Latest RPM builds</a></li><li class="chapter-item expanded "><a href="developer-guide/testing.html"><strong aria-hidden="true">3.6.</strong> Testing strategy</a></li><li class="chapter-item expanded "><a href="developer-guide/releasing.html"><strong aria-hidden="true">3.7.</strong> Releasing</a></li><li class="chapter-item expanded "><a href="developer-guide/glossary.html"><strong aria-hidden="true">3.8.</strong> Glossary</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="user-guide/user-guide.html"><strong aria-hidden="true">2.</strong> User guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="user-guide/osbuild-composer-description.html"><strong aria-hidden="true">2.1.</strong> osbuild-composer description</a></li><li class="chapter-item expanded "><a href="user-guide/installation.html"><strong aria-hidden="true">2.2.</strong> Installation and configuration</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="user-guide/managing-repositories.html"><strong aria-hidden="true">2.2.1.</strong> Managing repositories</a></li><li class="chapter-item expanded "><a href="user-guide/container-auth.html"><strong aria-hidden="true">2.2.2.</strong> Container registry credentials</a></li></ol></li><li class="chapter-item expanded "><a href="user-guide/building-an-image-from-cli.html"><strong aria-hidden="true">2.3.</strong> Creating images with the CLI interface</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="user-guide/building-ostree-images.html"><strong aria-hidden="true">2.3.1.</strong> Building OSTree image</a></li><li class="chapter-item expanded "><a href="user-guide/edge-container+installer.html"><strong aria-hidden="true">2.3.2.</strong> Building OSTree container and installer</a></li></ol></li><li class="chapter-item expanded "><a href="user-guide/uploading-to-cloud.html"><strong aria-hidden="true">2.4.</strong> Uploading cloud images</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="user-guide/uploading-to-aws.html"><strong aria-hidden="true">2.4.1.</strong> Uploading an image to AWS</a></li><li class="chapter-item expanded "><a href="user-guide/uploading-to-aws-s3.html"><strong aria-hidden="true">2.4.2.</strong> Uploading an image to AWS S3</a></li><li class="chapter-item expanded "><a href="user-guide/uploading-to-gcp.html"><strong aria-hidden="true">2.4.3.</strong> Uploading an image to GCP</a></li><li class="chapter-item expanded "><a href="user-guide/uploading-to-generic-s3.html"><strong aria-hidden="true">2.4.4.</strong> uploading an image to Generic S3</a></li><li class="chapter-item expanded "><a href="user-guide/uploading-to-azure.html"><strong aria-hidden="true">2.4.5.</strong> Uploading an image to Microsoft Azure</a></li><li class="chapter-item expanded "><a href="user-guide/uploading-to-oci.html"><strong aria-hidden="true">2.4.6.</strong> Uploading an image to OCI</a></li></ol></li><li class="chapter-item expanded "><a href="user-guide/uploading-to-registry.html"><strong aria-hidden="true">2.5.</strong> Uploading container images</a></li><li class="chapter-item expanded "><a href="user-guide/oscap-remediation.html"><strong aria-hidden="true">2.6.</strong> OpenSCAP image remediation</a></li><li class="chapter-item expanded "><a href="user-guide/repository-customizations.html"><strong aria-hidden="true">2.7.</strong> Repository customizations</a></li></ol></li><li class="chapter-item expanded "><a href="blueprint-reference/blueprint-reference.html"><strong aria-hidden="true">3.</strong> Blueprint Reference</a></li><li class="chapter-item expanded "><a href="image-builder-service/architecture.html"><strong aria-hidden="true">4.</strong> Image Builder service architecture</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="image-builder-service/image-builder-crc.html"><strong aria-hidden="true">4.1.</strong> Backend</a></li><li class="chapter-item expanded "><a href="image-builder-service/image-builder-composer.html"><strong aria-hidden="true">4.2.</strong> Composer</a></li><li class="chapter-item expanded "><a href="image-builder-service/image-builder-workers.html"><strong aria-hidden="true">4.3.</strong> Workers</a></li><li class="chapter-item expanded "><a href="image-builder-service/image-builder-koji.html"><strong aria-hidden="true">4.4.</strong> Koji integration</a></li></ol></li><li class="chapter-item expanded "><a href="developer-guide/developer-guide.html"><strong aria-hidden="true">5.</strong> Developer guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="developer-guide/workflow.html"><strong aria-hidden="true">5.1.</strong> Workflow</a></li><li class="chapter-item expanded "><a href="developer-guide/code-style.html"><strong aria-hidden="true">5.2.</strong> Code style</a></li><li class="chapter-item expanded "><a href="developer-guide/osbuild.html"><strong aria-hidden="true">5.3.</strong> OSBuild</a></li><li class="chapter-item expanded "><a href="developer-guide/osbuild-composer.html"><strong aria-hidden="true">5.4.</strong> osbuild-composer</a></li><li class="chapter-item expanded "><a href="developer-guide/latest-rpm-builds.html"><strong aria-hidden="true">5.5.</strong> Latest RPM builds</a></li><li class="chapter-item expanded "><a href="developer-guide/testing.html"><strong aria-hidden="true">5.6.</strong> Testing strategy</a></li><li class="chapter-item expanded "><a href="developer-guide/releasing.html"><strong aria-hidden="true">5.7.</strong> Releasing</a></li><li class="chapter-item expanded "><a href="developer-guide/glossary.html"><strong aria-hidden="true">5.8.</strong> Glossary</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -84,7 +92,7 @@
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                <div id="menu-bar-hover-placeholder"></div>
+                                <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky bordered">
                     <div class="left-buttons">
                         <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
@@ -94,7 +102,7 @@
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
@@ -111,6 +119,7 @@
                         <a href="print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
+
                     </div>
                 </div>
 
@@ -124,8 +133,9 @@
                         </ul>
                     </div>
                 </div>
+
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
-                <script type="text/javascript">
+                <script>
                     document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
                     document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
                     Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
@@ -135,10 +145,64 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="user-guide-for-osbuild-composer"><a class="header" href="#user-guide-for-osbuild-composer">User guide for osbuild-composer</a></h1>
+                        <h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
+<p>OSBuild is comprised of many individual projects which work together to provide a wide range of features to build and assemble operating system artifacts. The graphical user interfaces can be found under the term <a href="./introduction.html#image-builder">Image Builder</a> and provide access to the osbuild machinery. They integrate into existing operating system interfaces, including the <strong>Cockpit</strong> management console, the <strong>cloud.redhat.com</strong> customer services, as well as the classic linux <strong>command-line</strong>.</p>
+<p>The <a href="./introduction.html#composer">Composer</a> project is the underlying system service that provides the APIs required by the multitude of user interfaces. It serves as arbiter between the specific requirements of the user interfaces and the general purpose functionality provided by <a href="./introduction.html#osbuild">osbuild</a>, the engine that drives the builds and assemblies of the individual artifacts.</p>
+<p>Users will find help for the graphical interfaces in the respective UI documentation of Image Builder. The Composer section contains help on deploying your own build services, or refining the blueprints of the operating system artifacts. Lastly, information on the osbuild tool sheds light on the inner workings, the system requirements, and the wide applicability of the engine and heart of OSBuild.</p>
+<h2 id="image-builder"><a class="header" href="#image-builder">Image Builder</a></h2>
+<p>The Image Builder user interfaces integrate into existing operating system user interfaces and extend them to support building operating system artifacts via the OSBuild tools. These interfaces are tightly coupled with their respective surrounding interfaces and often documented there. Followingly, a list of external user-interfaces and links to their respective documentation, followed by a list of user-interface documentation that is part of OSBuild itself.</p>
+<ul>
+<li>
+<p><strong>Cockpit Composer</strong>: The web-based management console Cockpit comes bundled with a UI extension to build operating system artifacts. See the documentation of Cockpit Composer for information, or consult the Cockpit Guide for help on general Cockpit questions.</p>
+</li>
+<li>
+<p><strong>CloudDot</strong>: The Red Hat Customer Service Portal on cloud.redhat.com has built-in interfaces to the OSBuild functionality, allowing customers to build images and other artifacts on-demand. Consult the Red Hat Support Pages for help, or dive into the Image Builder Documentation to get more details on the underlying software.</p>
+</li>
+<li>
+<p><strong>Command-line Interface</strong>: With composer-cli there exists a linux command-line interface (CLI) to some of the functionality provided by OSBuild. The CLI is part of the Weldr project, a precursor of OSBuild.</p>
+</li>
+<li>
+<p><strong>OSBuild User Documentation</strong></p>
+<ul>
+<li><a href="https://www.osbuild.org/news/2020-06-01-how-to-ostree-anaconda.html">HOWTO: Image Builder + OSTree + Anaconda</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="composer"><a class="header" href="#composer">Composer</a></h2>
+<p>The system service OSBuild Composer provides APIs and services to build operating system images and other artifacts. It defines the blueprints of a wide range of images and a managed environment to execute the required build pipelines.</p>
+<p>The Composer service exports a large set of APIs, each tailored for a specific user-interface and use-case. Underneath, it converts all API requests to a uniform worker API which uses the osbuild machinery to execute the build pipelines.</p>
+<p>For high-level documentation and information on development, see its Project Pages @GitHub.</p>
+<ul>
+<li><strong>OSBuild Composer Administrator Documentation</strong>:
+<ul>
+<li><a href="./">osbuild.org/guides</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="osbuild"><a class="header" href="#osbuild">osbuild</a></h2>
+<p>The osbuild project is the heart of OSBuild. It defines a pipeline description to build arbitrary operating system artifacts out of many small and self-contained stages. Furthermore, it provides an execution engine that will consume a pipeline description, execute the pipeline, and provide the resulting image back to the user. The osbuild interfaces are meant to be used by machines, not humans. Therefore, access to osbuild resources should only be required if you plan to develop new osbuild frontends, debug osbuild failures on your own, or contribute to the osbuild development.</p>
+<p>For high-level documentation and information on development, see its Project Pages @GitHub.</p>
+<ul>
+<li>
+<p><strong>OSBuild System Documentation</strong>:</p>
+<ul>
+<li><a href="https://www.osbuild.org/man/osbuild-manifest.5">MAN: osbuild-manifest.5</a></li>
+<li><a href="https://www.osbuild.org/man/osbuild.1">MAN: osbuild.1</a></li>
+</ul>
+</li>
+<li>
+<p><strong>OSBuild Developer Documentation</strong>:</p>
+<ul>
+<li><a href="https://www.osbuild.org/news/2020-10-23-introducing-rpmrepo.html">Introducing RPMrepo</a></li>
+<li><a href="https://www.osbuild.org/rpmrepo/">RPMrepo: RPM Repository Snapshots</a></li>
+</ul>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="user-guide-for-osbuild-composer"><a class="header" href="#user-guide-for-osbuild-composer">User guide for osbuild-composer</a></h1>
 <p><code>osbuild-composer</code> is a service for building customized operating system images (currently only Fedora and RHEL). These images can be used with various virtualization software such as <a href="https://www.qemu.org/">QEMU</a>, <a href="https://www.virtualbox.org/">VirtualBox</a>, <a href="https://www.vmware.com/">VMWare</a> and also with cloud computing providers like <a href="https://aws.amazon.com/">AWS</a>, <a href="https://azure.microsoft.com/">Azure</a> or <a href="https://cloud.google.com/">GCP</a>.</p>
 <p>This guide contains instructions on installing <code>osbuild-composer</code> service and its basic usage.</p>
 <p>If you want to fix a typo, or even contribute new content, the sources for this webpage are hosted in <a href="https://github.com/osbuild/guides/">osbuild/guides GitHub repository</a>.</p>
+<p>For Red Hatters, the internal guides can be found <a href="https://osbuild.pages.redhat.com/internal-guides/">here</a>.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="basic-concepts"><a class="header" href="#basic-concepts">Basic concepts</a></h1>
 <p><code>osbuild-composer</code> works with a concept of <strong>blueprints</strong>. A blueprint is a description of the final <strong>image</strong> and its <strong>customizations</strong>. A <strong>customization</strong> can be:</p>
 <ul>
@@ -223,12 +287,93 @@ url = &quot;http://local/repos/fedora32/projectrepo/&quot;
 <p>This source will be used for any requests that specify fedora-32, eg. listing
 packages and specifying fedora-32 will include this source, but listing
 packages for the host distro will not.</p>
+<h3 id="verifying-repository-metadata-with-gpg"><a class="header" href="#verifying-repository-metadata-with-gpg">Verifying Repository Metadata with GPG</a></h3>
+<p>In addition to checking the GPG signature on rpm packages, DNF can check that
+repository metadata has been signed with a GPG key. You can setup such a
+repository yourself by signing your <code>repomd.xml</code> file after you have run
+<code>createrepo_c</code> on your repository. For example:</p>
+<pre><code class="language-bash">cd repo/
+createrepo_c .
+cd repodata/
+gpg -u YOUR-GPG-KEY-EMAIL --yes --detach-sign --armor repomd.xml
+</code></pre>
+<p>In order to check this signature you need to tell osbuild-composer what gpg key
+to use to do the check.  Set <code>check_repogpg = true</code> in the source, and if the
+key is available over https, set the <code>gpgkeys</code> entry to the URL for the key,
+like this:</p>
+<pre><code class="language-toml">check_gpg = true
+check_ssl = true
+id = &quot;custom-local&quot;
+name = &quot;signed local packages&quot;
+system = false
+type = &quot;yum-baseurl&quot;
+url = &quot;https://local/repos/projectrepo/&quot;
+check_repogpg = true
+gpgkeys=[&quot;https://local/keys/repokey.pub&quot;]
+</code></pre>
+<p>Normally you would want to distribute the key via a separate channel from the
+rpms for better security, the above is just an example. You can also embed the
+whole key into the source <code>gpgkeys</code> entry. If the entry starts with <code>-----BEGIN PGP PUBLIC KEY BLOCK-----</code> it will import it directly instead of fetching it
+from the url. For example:</p>
+<pre><code class="language-toml">check_gpg = true
+check_ssl = true
+check_repogpg
+id = &quot;custom-local&quot;
+name = &quot;signed local packages&quot;
+system = false
+type = &quot;yum-baseurl&quot;
+url = &quot;https://local/repos/projectrepo/&quot;
+gpgkeys=[&quot;https://remote/keys/other-repokey.pub&quot;,
+'''-----BEGIN PGP PUBLIC KEY BLOCK-----
+Version: GnuPG v1.4.10 (GNU/Linux)
+
+mQENBEt+xXMBCACkA1ZtcO4H7ZUG/0aL4RlZIozsorXzFrrTAsJEHvdy+rHCH3xR
+cFz6IMbfCOdV+oKxlDP7PS0vWKfqxwkenOUut5o9b32uDdFMW4IbFXEQ94AuSQpS
+jo8PlVMm/51pmmRxdJzyPnr0YD38mVK6qUEYLI/4zXSgFk493GT8Y4m3N18O/+ye
+PnOOItj7qbrCMASoBx1TG8Zdg8ufehMnfb85x4xxAebXkqJQpEVTjt4lj4p6BhrW
+R+pIW/nBUrz3OsV7WwPKjSLjJtTJFxYX+RFSCqOdfusuysoOxpIHOx1WxjGUOB5j
+fnhmq41nWXf8ozb58zSpjDrJ7jGQ9pdUpAtRABEBAAG0HkJyaWFuIEMuIExhbmUg
+PGJjbEByZWRoYXQuY29tPokBOAQTAQIAIgUCS37FcwIbAwYLCQgHAwIGFQgCCQoL
+BBYCAwECHgECF4AACgkQEX6MFo7+On9dgAf9Hi2K1MKcmLkDeSUIXkXIAw0nAzl2
+UDGLWEdDqAgFxP6UaCVtOIRCr7z4EDOQoxD7mkdekbH2W5GcTO4h8MQBHYD9EkY7
+H/lTKchlFfsmafOoA3Y/tDLPKu+OIfH9Mqn2Mf7wMYGrnWSRNKYgvC5zkMgkhoPU
+mSPPHyBabsdS/Kg5ZAf43ac/MXY9V8Mk6zqbBlj6QYqjJ0nBD6vwozrDQ5gJtDUL
+mQho13zPn4lBJl9YJVjcgRB2WbzgSZOln0DfV22Seai66vnr5NyaOIw5B9QLSNhN
+EaPFswEDLKCsns9dkDuGFX52/Mt/i7JySvwhMBqHElPzWmwCHeY45M8gBYhGBBAR
+AgAGBQJLfsbpAAoJECH7Y/6XEsLNuasAn0Q0jB4Ea/95EREUkCFTm9L6nOpAAJ9t
+QzwGXhrLFZzOdRWYiWcCQbX5/7kBDQRLfsVzAQgAvN5jr95pJthv2w9co9/7omhM
+5rAnr9WJfbMLLiUfPPUvpL24RGO6SKy03aiVTUjlaHc+cGqOciwnNKMCSt+noyG2
+kNnAESTDtCivpsjonaFP8jA3TqL0QK+yzBRKJnMnLEY1nWE1FtkMRccXvzi0Z/XQ
+VhiWQyTvDFoKtepBFrH9UqWbNHyki22aighumUsW01pcPH2ogSj+HR01r7SfI/y2
+EkE6loHQfCDycHmlqYV+X6GZEvf1qu2+EHEQChsHIAxWyshsxM/ZPmx/8e5S3Xmj
+l7h/6E9wcsIpvnf504sLX5j4Km9I5HgJSRxHxgRPpqJ2/XiClAJanO5gCw0RdQAR
+AQABiQEfBBgBAgAJBQJLfsVzAhsMAAoJEBF+jBaO/jp/SqEH/iArzrfVOhZQGuy1
+KmG0+/FdJGqAEHP5HWpsaeYJok1VmhTPZd4IVFBz/bGJYyvsrPU0pJ6QLkdGxNnb
+KulJocgkW5MKEL/CRc54ESKwYngigmbY4qLwhS+gB3BJg1TvoHD810MSj4wdxNNo
+6JQmFmuoDsLRwaRYbKQDz95XXoGQtmV1o57T05WkLuC5OmHqnWv3rggVC8madpUJ
+moUUvUWgU1qyXe3PrgMGFOibWIl7lPZ08nzKXBRvSK/xoTGxl+570AevfVHMu5Uk
+Yu2U6D6/DYohtTYp0s1ekS5KQkCJM7lfqecDsQhfVfOfR0w4aF8k8u3HmWdOfUz+
+9+2ZsBo=
+=myjM
+-----END PGP PUBLIC KEY BLOCK-----''']
+</code></pre>
+<p>Notice that gpgkeys can take as many key urls and keys as you need, not just one.
+If the signature cannot be found an error similar to this will be returned:</p>
+<pre><code>GPG verification is enabled, but GPG signature is not available.
+This may be an error or the repository does not support GPG verification:
+Status code: 404 for http://repo-server/fedora/repodata/repomd.xml.asc (IP: 192.168.1.3)
+</code></pre>
+<p>And if the signature is invalid:</p>
+<pre><code>repomd.xml GPG signature verification error: Bad GPG signature
+</code></pre>
+<p>You can test the signature of the repository manually by running <code>gpg --verify repomd.xml.asc</code>
+to help troubleshoot problems.</p>
 <h2 id="official-repository-overrides"><a class="header" href="#official-repository-overrides">Official repository overrides</a></h2>
-<p><code>osbuild-composer</code> does not inherit the system repositories located in <code>/etc/yum.repos.d/</code>. Instead, it has its own set of official repositories defined in <code>/usr/share/osbuild-composer/repositories</code>. To override the official repositories, define overrides in <code>/etc/osbuild-composer/repositories</code>. This directory is meant for user defined overrides and the files located here take precedence over those in <code>/usr</code>. </p>
+<p><code>osbuild-composer</code> does not inherit the system repositories located in <code>/etc/yum.repos.d/</code>. Instead, it has its own set of official repositories defined in <code>/usr/share/osbuild-composer/repositories</code>. To override the official repositories, define overrides in <code>/etc/osbuild-composer/repositories</code>. This directory is meant for user defined overrides and the files located here take precedence over those in <code>/usr</code>.</p>
 <p>The configuration files are not in the usual &quot;repo&quot; format. Instead, they are simple <code>JSON</code> files.</p>
 <h3 id="defining-official-repository-overrides"><a class="header" href="#defining-official-repository-overrides">Defining official repository overrides</a></h3>
 <p>To set your own repositories, create this directory if it does not exist already:</p>
-<pre><code>$ sudo mkdir -p /etc/osbuild-composer/repositories
+<pre><code class="language-bash">$ sudo mkdir -p /etc/osbuild-composer/repositories
 </code></pre>
 <p>Based on the system you want to build an image for, determine the name of a new JSON file:</p>
 <ul>
@@ -265,6 +410,7 @@ packages for the host distro will not.</p>
     ]
 }
 </code></pre>
+<p>After you have created repository overrides in <code>/etc/osbuild-composer/repositories</code>, you must restart the <code>osbuild-composer</code> service in order for the overrides to take effect.</p>
 <h2 id="using-repositories-that-require-subscription"><a class="header" href="#using-repositories-that-require-subscription">Using repositories that require subscription</a></h2>
 <p><code>osbuild-composer</code> can use subscriptions from the host system if they are configured in the appropriate file in <code>/etc/osbuild-composer/repositories</code>. To enable such repository, copy the <code>baseurl</code> from <code>/etc/yum.repos.d/redhat.repo</code> and paste it into the JSON repository definition. Then allow RHSM support using <code>&quot;rhsm&quot;: true</code> like this:</p>
 <pre><code class="language-json">{
@@ -278,6 +424,20 @@ packages for the host distro will not.</p>
 }
 </code></pre>
 <p><code>osbuild-composer</code> will read the <code>/etc/yum.repos.d/redhat.repo</code> file from the host system and use it as a source of subscriptions. The same subscriptions must be available on a remote worker, if used.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="container-registry-credentials"><a class="header" href="#container-registry-credentials">Container registry credentials</a></h1>
+<p>All communication with container registries is done by the <code>osbuild-worker</code>
+service. It can be configured via the <code>/etc/osbuild-worker/osbuild-worker.toml</code>
+configuration file. It is read only once at service start, so the service
+needs to be restarted after making any changes.</p>
+<p>The configuration file has a <code>containers</code> section with an <code>auth_file_path</code>
+field that is a string referring to a path of a <code>containers-auth.json(5)</code> file
+to be used for accessing protected resources. An example configuration could
+look like this:</p>
+<pre><code class="language-Toml">[containers]
+auth_file_path = &quot;/etc/osbuild-worker/containers-auth.json&quot;
+</code></pre>
+<p>For detailed information on the format of the authorization file itself,
+refer to the corresponding man page: <code>man 5 containers-auth.json</code>.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="creating-images-with-the-cli-interface"><a class="header" href="#creating-images-with-the-cli-interface">Creating images with the CLI interface</a></h1>
 <p>An image is specified by a blueprint and an image type. Unless you specify otherwise, it will use the same distribution and version (e.g. Fedora 33) as the host system. The architecture will always be the same as the one on the host.</p>
 <h2 id="blueprints-management-using-composer-cli"><a class="header" href="#blueprints-management-using-composer-cli">Blueprints management using composer-cli</a></h2>
@@ -366,7 +526,7 @@ logs/osbuild.log
 <p>The result will look like this:</p>
 <pre><code> _________________          ____________________________
 |                 |        |                            |
-|                 |------&gt; | Fedora VM with mounted ISO |
+|                 |-------&gt;| Fedora VM with mounted ISO |
 |                 |        |  - Anaconda                |
 |  Fedora Host OS |        |____________________________|
 |                 |                |
@@ -569,7 +729,7 @@ version = &quot;0.0.1&quot;
 <pre><code>$ composer-cli blueprints push empty.toml
 </code></pre>
 <p>Start the build:</p>
-<pre><code>$ composer-cli compose start-ostree --ref &quot;rhel/edge/example&quot; --url http://10.0.2.2:8000/repo/ empty edge-installer
+<pre><code>$ composer-cli compose start-ostree --ref &quot;rhel/edge/example&quot; --url http://10.0.2.2:8080/repo/ empty edge-installer
 Compose 09d98a67-a401-4613-9a5b-b93f8a6e695f added to the queue
 </code></pre>
 <p><em>Note: In RHEL 8.4, the image type was called <code>rhel-edge-installer</code>. It has been renamed to <code>edge-installer</code> in 8.5 onwards.</em></p>
@@ -610,6 +770,114 @@ key = &quot;OBJECT_KEY&quot;
 <pre><code>$ sudo composer-cli compose start base-image-with-tmux ami IMAGE_KEY aws-config.toml
 </code></pre>
 <p>where IMAGE_KEY will be the name of your new AMI, once it is uploaded to EC2.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="uploading-an-image-to-an-aws-s3-bucket"><a class="header" href="#uploading-an-image-to-an-aws-s3-bucket">Uploading an image to an AWS S3 Bucket</a></h1>
+<p><code>osbuild-composer</code> provides the users with a convenient way to upload images, of all sorts, directly to an AWS S3 bucket right after the image is built.</p>
+<p>Using a text editor of your choice, create a configuration file with the following content:</p>
+<pre><code class="language-toml">provider = &quot;aws.s3&quot;
+
+[settings]
+accessKeyID = &quot;AWS_ACCESS_KEY_ID&quot;
+secretAccessKey = &quot;AWS_SECRET_ACCESS_KEY&quot;
+bucket = &quot;AWS_BUCKET&quot;
+region = &quot;AWS_REGION&quot;
+key = &quot;OBJECT_KEY&quot;
+</code></pre>
+<p>There are several considerations when filling values in this file:</p>
+<ul>
+<li><code>AWS_BUCKET</code> must be in the <code>AWS_REGION</code></li>
+</ul>
+<blockquote>
+<p>If your authentication method requires you to also specify a session token, you can put it in the <code>settings</code> section of the configuration file in a field named <code>sessionToken</code>.</p>
+</blockquote>
+<p>Once everything is configured, you can trigger a compose as usual with additional image name and cloud provider profile:</p>
+<pre><code>$ sudo composer-cli compose start base-image-with-tmux qcow2 IMAGE_KEY aws-s3-config.toml
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="uploading-an-image-to-gcp"><a class="header" href="#uploading-an-image-to-gcp">Uploading an image to GCP</a></h1>
+<p><code>osbuild-composer</code> provides the users with a convenient way to upload images directly to GCP right after the image is built. Before you can use this feature, you have to provide credentials for your user or service account, which you would like to use for uploading images to GCP.</p>
+<p>The account associated with the credentials must have at least the following IAM roles assigned:</p>
+<ul>
+<li><code>roles/storage.admin</code> - to create and delete storage objects</li>
+<li><code>roles/compute.storageAdmin</code> - to import a VM image to Compute Engine</li>
+</ul>
+<p>Now, you are ready to upload your first image to GCP.</p>
+<p>Using a text editor of your choice, create a configuration file <code>gcp-config.toml</code> with the following content:</p>
+<pre><code class="language-toml">provider = &quot;gcp&quot;
+
+[settings]
+bucket = &quot;GCP_BUCKET&quot;
+region = &quot;GCP_STORAGE_REGION&quot;
+object = &quot;OBJECT_KEY&quot;
+credentials = &quot;GCP_CREDENTIALS&quot;
+</code></pre>
+<p>There are several considerations when filling values in this file:</p>
+<ul>
+<li><code>GCP_BUCKET</code> must point to an existing bucket.</li>
+<li><code>GCP_STORAGE_REGION</code> can be a <a href="https://cloud.google.com/storage/docs/locations#location-r">regular Google storage region, but also a dual or multi region</a>.</li>
+<li><code>OBJECT_KEY</code> is the name of an intermediate storage object. It must not exist before the upload, and it will be deleted when the upload process is done. If the object name does not end with <code>.tar.gz</code>, the extension is automatically added to the object name.</li>
+<li><code>GCP_CREDENTIALS</code> is a Base64 encoded content of the credentials JSON file downloaded from GCP. The credentials are used to determine the GCP project to upload the image to.
+<blockquote>
+<p>Specifying this value in the <code>gcp-config.toml</code> may be optional if you use a different mechanism of authenticating with GCP. For more information about the various ways of authenticating with GCP, read the <a href="user-guide/uploading-to-gcp.html#authenticating-with-gcp">Authenticating with GCP</a> below.</p>
+</blockquote>
+</li>
+</ul>
+<p>After everything is configured, you can trigger a compose as usual with an additional image name and cloud provider profile:</p>
+<pre><code class="language-bash">sudo composer-cli compose start base-image-with-tmux gce IMAGE_KEY gcp-config.toml
+</code></pre>
+<p>where <em>IMAGE_KEY</em> will be the name of your new GCE image, once it is uploaded to GCP.</p>
+<h2 id="authenticating-with-gcp"><a class="header" href="#authenticating-with-gcp">Authenticating with GCP</a></h2>
+<p>osbuild-composer supports multiple ways of authenticating with GCP.</p>
+<p>In case the osbuild-composer is configured to authenticate with GCP in multiple ways, it uses them in the following order of preference:</p>
+<ol>
+<li>Credentials specified with the <code>composer-cli</code> command in the configuration file.</li>
+<li>Credentials configured in the osbuild-composer worker configuration.</li>
+<li>Application Default Credentials from the Google GCP SDK library, which tries to automatically find a way to authenticate using the following options:
+<ol>
+<li>If <code>GOOGLE_APPLICATION_CREDENTIALS</code> environment variable is set, it tries to load and use credentials from the file pointed to by the variable.</li>
+<li>It tries to authenticate using the service account attached to the resource which is running the code (e.g. Google Compute Engine VM).</li>
+</ol>
+</li>
+</ol>
+<blockquote>
+<p><strong>Note that the GCP credentials are used to determine the GCP project to upload the image to.</strong> Therefore, unless you want to upload all of your images to the same GCP project, you should always specify credentials with the <code>composer-cli</code> command.</p>
+</blockquote>
+<h3 id="specifying-credentials-with-the-composer-cli-command"><a class="header" href="#specifying-credentials-with-the-composer-cli-command">Specifying credentials with the <code>composer-cli</code> command</a></h3>
+<p>You need to specify the credentials with the <code>composer-cli</code> command in the provided upload target configuration <code>gcp-config.toml</code>:</p>
+<pre><code class="language-toml">provider = &quot;gcp&quot;
+
+[settings]
+...
+credentials = &quot;GCP_CREDENTIALS&quot;
+</code></pre>
+<p>The <code>GCP_CREDENTIALS</code> value is a Base64 encoded content of the Google account credentials JSON file. The reason for this is that the file is quite large and contains multiple key values, therefore mapping them to the TOML configuration format would require more manual work from the user, than encoding the whole file in Base64 and specifying it as a single value.</p>
+<p>To get the encoded content of the Google account credentials file with the path stored in <code>GOOGLE_APPLICATION_CREDENTIALS</code> environment variable, run:</p>
+<pre><code class="language-bash">base64 -w 0 &quot;${GOOGLE_APPLICATION_CREDENTIALS}&quot;
+</code></pre>
+<h3 id="specifying-credentials-in-the-osbuild-composer-worker-configuration"><a class="header" href="#specifying-credentials-in-the-osbuild-composer-worker-configuration">Specifying credentials in the osbuild-composer worker configuration</a></h3>
+<p>You can configure the credentials to be used for GCP globally for all image builds in the worker configuration <code>/etc/osbuild-worker/osbuild-worker.toml</code>:</p>
+<pre><code class="language-toml">[gcp]
+credentials = &quot;PATH_TO_GCP_ACCOUNT_CREDENTIALS&quot;
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="uploading-an-image-to-to-a-bucket-in-a-generic-s3-server"><a class="header" href="#uploading-an-image-to-to-a-bucket-in-a-generic-s3-server">Uploading an image to to a bucket in a Generic S3 server</a></h1>
+<p><code>osbuild-composer</code> provides the users with a convenient way to upload images, of all sorts, directly to a bucket in a Generic S3 server right after the image is built.</p>
+<p>Using a text editor of your choice, create a configuration file with the following content:</p>
+<pre><code class="language-toml">provider = &quot;generic.s3&quot;
+
+[settings]
+endpoint = &quot;S3_SERVER_ENDPOINT&quot;
+accessKeyID = &quot;S3_ACCESS_KEY_ID&quot;
+secretAccessKey = &quot;S3_SECRET_ACCESS_KEY&quot;
+bucket = &quot;S3_BUCKET&quot;
+region = &quot;S3_REGION&quot;
+key = &quot;OBJECT_KEY&quot;
+</code></pre>
+<p>There are several considerations when filling values in this file:</p>
+<ul>
+<li><code>AWS_REGION</code> must still be set (e.g. to us-east-1) even if it has no meaning in your S3 server</li>
+<li>If your server is using HTTPS with a certificate signed by your own CA, you can either pass the CA bundle by setting the field <code>ca_bundle</code>, pointing it to the CA's public certificate, or skip SSL verification by setting <code>skip_ssl_verification</code> to <code>true</code></li>
+</ul>
+<p>Once everything is configured, you can trigger a compose as usual with additional image name and cloud provider profile:</p>
+<pre><code>$ sudo composer-cli compose start base-image-with-tmux qcow2 IMAGE_KEY generic-s3-config.toml
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="uploading-an-image-to-microsoft-azure"><a class="header" href="#uploading-an-image-to-microsoft-azure">Uploading an image to Microsoft Azure</a></h1>
 <p><code>osbuild-composer</code> builds images and delivers them to <a href="https://azure.microsoft.com/en-us/">Microsoft Azure</a>
 automatically. These images are ready to use with <a href="https://azure.microsoft.com/en-us/services/virtual-machines/">virtual machines</a> in the
@@ -650,26 +918,172 @@ container = &quot;your storage container name&quot;
 image configuration. Replace <code>my_image_key</code> with the preferred image name you
 want to see in Azure. This is the name that appears inside your storage
 container.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="blueprint-reference"><a class="header" href="#blueprint-reference">Blueprint reference</a></h1>
-<p>Blueprints are simple text files in <a href="https://toml.io/en/">TOML format</a> that describe which packages to install into the image, allowing to specify the packages version. They can also define a limited set of customizations to make to the final image.</p>
-<p>A basic blueprint looks like this:</p>
-<pre><code class="language-toml">name = &quot;base&quot;
-description = &quot;A base system with bash&quot;
-version = &quot;0.0.1&quot;
+<div style="break-before: page; page-break-before: always;"></div><h1 id="uploading-an-image-to-oci"><a class="header" href="#uploading-an-image-to-oci">Uploading an image to OCI</a></h1>
+<p><code>osbuild-composer</code> provides the users with a convenient way to upload images directly to OCI right after the image is built.
+See <a href="https://docs.oracle.com/en-us/iaas/Content/Compute/Tasks/managingcustomimages.htm">Managing Custom Images</a> in OCI documentation (includes permissions details).</p>
+<p>Now, you are ready to upload your first image to OCI. Using a text editor of your choice, create a configuration file with the following content: </p>
+<pre><code class="language-toml">provider = &quot;oci&quot;
 
-[[packages]]
-name = &quot;bash&quot;
-version = &quot;4.4.*&quot;
+[settings]
+user = &quot;OCI_CLI_USER&quot;
+tenancy = &quot;OCI_CLI_TENANCY&quot;
+fingerprint = &quot;OCI_CLI_FINGERPRINT&quot;
+region = &quot;OCI_CLI_REGION&quot;
+bucket = &quot;OCI_BUCKET&quot;
+namespace = &quot;OCI_NAMESPACE&quot;
+compartment = &quot;OCI_COMPARTMENT&quot;
+private_key = '''
+...
+'''
+</code></pre>
+<p>There are several considerations when filling values in this file:</p>
+<ul>
+<li><code>OCI_BUCKET</code> must be in the <code>OCI_REGION</code> and must exist before the upload</li>
+</ul>
+<p>Once everything is configured, you can trigger a compose as usual with additional image name and cloud provider profile:</p>
+<pre><code>$ sudo composer-cli compose start BLUEPRINT_NAME oci IMAGE_KEY oci-config.toml
+</code></pre>
+<p>where <code>IMAGE_KEY</code> will be the name of your new OCI image once uploaded.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="uploading-a-container-image-to-a-registry"><a class="header" href="#uploading-a-container-image-to-a-registry">Uploading a container image to a registry</a></h1>
+<p><code>osbuild-composer</code> can upload a container image, like the RHEL for
+edge container, to a registry directly after it has been built.</p>
+<p>In order to do so, the container reference and an upload configuration
+file need to be specified when building a container artifact:</p>
+<pre><code>$ sudo composer-cli compose start BLUEPRINT container REFERENCE CONFIG.toml
+</code></pre>
+<p>where <code>BLUEPRINT</code> is the name for the container and <code>REFERENCE</code> the
+reference to the container image, like <code>registry.example.com/image:tag</code>.
+If <code>:tag</code> is omitted, <code>:latest</code> is the default.  The <code>CONFIG.toml</code> file
+must include <code>provider = &quot;container&quot;</code>. Other values are optional.</p>
+<pre><code class="language-Toml">provider = &quot;container&quot; # required
+
+[settings]
+tls_verify = false     # optional, TLS verification, default: true
+username = &quot;USERNAME&quot;  # optional, username to use
+password = &quot;PASSWORD&quot;  # optional, password to use
+</code></pre>
+<p>Instead of specifying <code>username</code> and <code>password</code> directly, a central
+<code>containers-auth.json(5)</code> file can be used, see
+<a href="user-guide/./container-auth.html">Container registry credentials</a>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="openscap-remediation"><a class="header" href="#openscap-remediation">OpenSCAP Remediation</a></h1>
+<p><code>osbuild-composer</code> now provides the ability to build security hardened images using the <a href="https://github.com/OpenSCAP/openscap/blob/maint-1.3/docs/manual/manual.adoc">OpenSCAP</a> tool. 
+This feature is available for <code>RHEL 8.7</code> (&amp; above) and <code>RHEL 9.1</code> (&amp; above).</p>
+<h2 id="openscap"><a class="header" href="#openscap">OpenSCAP</a></h2>
+<p>The <code>OpenSCAP</code> tool enables users to scan images for vulnerabilities and then remediate the non-compliances according to
+pre-defined security standards. A limitation of this is that it is not always trivial to fix all issues after the first
+boot of the image.</p>
+<h2 id="build-time-remedation"><a class="header" href="#build-time-remedation">Build-time Remedation</a></h2>
+<p>To solve this issue, an <a href="user-guide/&#x27;https://github.com/osbuild/osbuild/blob/main/stages/org.osbuild.oscap.remediation&#x27;">osbuild stage</a> runs the <code>OpenSCAP</code> tool on the filesystem tree while the image is being built. The <code>OpenSCAP</code> tool runs 
+the standard evaluation for the given profile and applies the remediations to the image. This process enables the user to build a more completely
+hardened image compared to running the remediation on a live system.</p>
+<h2 id="configurations"><a class="header" href="#configurations">Configurations</a></h2>
+<p><code>osbuild-composer</code> exposes to fields for the user to customize in the image blueprints:
+- the path to the <code>datastream</code> instructions (most likely in the <code>/usr/share/xml/scap/ssg/content/</code> directory)
+- the <code>profile_id</code> for the desired security standard</p>
+<p>The <code>profile_id</code> field accepts both the long and short forms, i.e. <code>cis</code> or <code>xccdf_org.ssgproject.content_profile_cis</code>.
+See the below table for supported profiles.</p>
+<p><code>osbuild-composer</code> will then generate the necessary configurations for the <code>osbuild</code> stage based on the the
+user customizations. Additionally, two packages will be added to the image, <code>openscap-scanner</code> (the <code>OpenSCAP</code> tool)
+&amp; <code>scap-security-guide</code> (this package contains the remediation instructions).</p>
+<blockquote>
+<p>:warning: <strong>Note</strong>
+The the remediation stage assumes that the
+<code>scap-security-guide</code> will be used for the datastream. This pacakge is installed on the image by default. If another datastream is desired, add the necessary package to the blueprint and specify the path to the datastream in the oscap config.</p>
+</blockquote>
+<h2 id="supported-profiles"><a class="header" href="#supported-profiles">Supported profiles</a></h2>
+<p>The supported profiles are distro specific, see below:</p>
+<div class="table-wrapper"><table><thead><tr><th></th><th>Fedora</th><th>RHEL 8.7^</th><th>CS9/RHEL 9.1^</th></tr></thead><tbody>
+<tr><td>ANSSI-BP-028 (enhanced)</td><td></td><td>x</td><td>x</td></tr>
+<tr><td>ANSSI-BP-028 (high)</td><td></td><td>x</td><td>x</td></tr>
+<tr><td>ANSSI-BP-028 (intermediary)</td><td></td><td>x</td><td>x</td></tr>
+<tr><td>ANSSI-BP-028 (minimal)</td><td></td><td>x</td><td>x</td></tr>
+<tr><td>CIS Level 2 - Server</td><td></td><td>x</td><td>x</td></tr>
+<tr><td>CIS Level 1 - Server</td><td></td><td>x</td><td>x</td></tr>
+<tr><td>CIS Level 1 - Workstation</td><td></td><td>x</td><td>x</td></tr>
+<tr><td>CIS Level 2 - Workstation</td><td></td><td>x</td><td>x</td></tr>
+<tr><td>CUI</td><td></td><td>x</td><td>x</td></tr>
+<tr><td>Essential Eight</td><td></td><td>x</td><td>x</td></tr>
+<tr><td>HIPAA</td><td></td><td>x</td><td>x</td></tr>
+<tr><td>ISM Official</td><td></td><td>x</td><td>x</td></tr>
+<tr><td>OSPP</td><td>x</td><td>x</td><td>x</td></tr>
+<tr><td>PCI-DSS</td><td>x</td><td>x</td><td>x</td></tr>
+<tr><td>Standard</td><td>x</td><td></td><td></td></tr>
+<tr><td>DISA STIG</td><td></td><td>x</td><td>x</td></tr>
+<tr><td>DISA STIG with GUI</td><td></td><td>x</td><td>x</td></tr>
+</tbody></table>
+</div><div style="break-before: page; page-break-before: always;"></div><h1 id="third-party-repositories"><a class="header" href="#third-party-repositories">Third-party Repositories</a></h1>
+<p><code>osbuild-composer</code> supports adding packages from third-party repositories and saving the repository customizations
+to an image. This guide aims to clarify each usecase and how to configure <code>osbuild-composer</code> and
+the blueprints accordingly.</p>
+<p>Very importantly, <code>osbuild-composer</code> has two distinct definitions of third-party repositories. Firstly, <strong>payload repositories</strong> which can be used to install third-party packages at build time and,
+secondly, <strong>custom repositories</strong> which are used to persist the repository configurations to the image.</p>
+<p>This could lead to the following desired usecases:</p>
+<ol>
+<li>Install a third-party package</li>
+<li>Save the third-party repository configurations to the image</li>
+<li>Install a third-party package <strong>and</strong> save the configurations</li>
+</ol>
+<h2 id="1-install-a-third-party-package"><a class="header" href="#1-install-a-third-party-package">1. Install a third-party package</a></h2>
+<p>To install a third-party package at build time, it is necessary to enable the required third-party repository as a payload repository. This will not save any of the repository configurations
+to the image and will not make the repositories available to users on the system after the image has been built. For further information on how to install and configure <code>osbuild-composer</code>
+to use custom repositories for installing third-party packages, continue reading <a href="user-guide/./managing-repositories.html">here</a>.</p>
+<h2 id="2-save-repository-configurations"><a class="header" href="#2-save-repository-configurations">2. Save repository configurations</a></h2>
+<p>In the second scenario, to make third-party repository configurations persistent and make the repositories available to users on the system, one would use the blueprint <code>custom repository</code>
+configurations to enable this. The repository will be configured and saved to <code>/etc/yum.repos.d</code> as a <code>.repo</code> file. GPG keys are not imported at build time, but are imported when first 
+installing a third-party package from the desired repository. You can find the blueprint reference for custom repositories <a href="user-guide/../blueprint-reference/blueprint-reference.html">here</a>.</p>
+<h2 id="3-install-a-third-party-package-and-save-configurations"><a class="header" href="#3-install-a-third-party-package-and-save-configurations">3. Install a third-party package and save configurations</a></h2>
+<p>In this case it is necessary to use a combination of payload repositories and custom repositories in order to achieve the desired outcome. This will ensure that the package is installed during 
+build time and the repository configuration is saved to disk for future use. If the user only needs the package or the configuration file, they can use the appropriate repository type to achieve
+their goal.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="blueprint-reference"><a class="header" href="#blueprint-reference">Blueprint Reference</a></h1>
+<p>Blueprints are text files in the <a href="https://toml.io/en/">TOML format</a> that describe customizations for the image you are building.</p>
+<p>A very basic blueprint with just the required attributes at the root looks like:</p>
+<pre><code class="language-toml">name = &quot;basic-example&quot;
+description = &quot;A basic blueprint&quot;
+version = &quot;0.0.1&quot;
 </code></pre>
 <p>Where:</p>
 <ul>
-<li><code>name</code> field is the name of the blueprint. It can contain spaces, but they will be converted to <code>-</code> when it is written to disk. It should be short and descriptive.</li>
-<li><code>description</code> can be a longer description of the blueprint, it is only used for display purposes.</li>
-<li><code>version</code> is a semver compatible version number. If a new blueprint is uploaded with the same version the server will automatically bump the PATCH level of the version. If the version doesn't match it will be used as is, for example, uploading a blueprint with version set to 0.1.0 when the existing blueprint version is 0.0.1 will result in the new blueprint being stored as version 0.1.0.</li>
+<li>The <code>name</code> attribute is a string that contains the name of the blueprint. It can contain spaces, but they will be converted to <code>-</code> when it is import into <code>osbuild-composer</code>. It should be short and descriptive.</li>
+<li>The <code>description</code> attribute is a string that can be a longer description of the blueprint and is only used for display purposes.</li>
+<li>The <code>version</code> attribute is a string that contains a semver compatible version number. If a new blueprint is uploaded with the same version the server will automatically bump the PATCH level of the version. If the version doesn't match it will be used as is. For example, uploading a blueprint with version set to 0.1.0 when the existing blueprint version is 0.0.1 will result in the new blueprint being stored as version 0.1.0.</li>
 </ul>
-<h2 id="packages-and-modules"><a class="header" href="#packages-and-modules">Packages and modules</a></h2>
-<p><code>[[packages]]</code> and <code>[[modules]]</code> entries describe the package names and matching version glob to be installed into the image.</p>
-<p>The package names must match the names exactly, and the versions can be an exact match or a filesystem-like glob of the version using <code>*</code> wildcards and <code>?</code> character matching.</p>
+<p>You can upload a blueprint with the <code>osbuild-composer blueprints push $filename</code> command, the blueprint will then be usable in <code>osbuild-composer compose</code> as the <code>name</code> you gave it.</p>
+<p>Blueprints have two main sections, the <a href="blueprint-reference/blueprint-reference.html#content">content</a> and <a href="blueprint-reference/blueprint-reference.html#customizations">customizations</a> sections.</p>
+<h3 id="distribution-selection-with-blueprints"><a class="header" href="#distribution-selection-with-blueprints">Distribution selection with blueprints</a></h3>
+<p>The blueprint now supports a new <code>distro</code> field that will be used to select the
+distribution to use when composing images, or depsolving the blueprint. If
+<code>distro</code> is left blank it will use the host distribution. If you upgrade the
+host operating system the blueprints with no <code>distro</code> set will build using the
+new os.</p>
+<p>eg. A blueprint that will always build a Fedora 38 image, no matter what
+version is running on the host:</p>
+<pre><code class="language-toml">name = &quot;tmux&quot;
+description = &quot;tmux image with openssh&quot;
+version = &quot;1.2.16&quot;
+distro = &quot;fedora-38&quot;
+
+[[packages]]
+name = &quot;tmux&quot;
+version = &quot;*&quot;
+
+[[packages]]
+name = &quot;openssh-server&quot;
+version = &quot;*&quot;
+</code></pre>
+<h2 id="content"><a class="header" href="#content">Content</a></h2>
+<p>The content section determines what goes into the image from other sources such as packages, package groups, or containers. Content is defined at the root of the blueprint.</p>
+<ul>
+<li><a href="blueprint-reference/blueprint-reference.html#packages">Packages</a>.</li>
+<li><a href="blueprint-reference/blueprint-reference.html#groups">Groups</a>.</li>
+<li><a href="blueprint-reference/blueprint-reference.html#containers">Containers</a>.</li>
+</ul>
+<h3 id="packages"><a class="header" href="#packages">Packages</a></h3>
+<p>The <code>packages</code> and <code>modules</code> lists contain objects with a <code>name</code> and optional <code>version</code> attribute.</p>
+<ul>
+<li>The <code>name</code> attribute is a <strong>required</strong> string and can be an exact match, or a filesystem-like glob using <code>*</code> for wildcards and <code>?</code> for character matching.</li>
+<li>The <code>version</code> attribute is an <em>optional</em> string can be an exact match or a filesystem-like glob of the version using <code>*</code> for wildcards and <code>?</code> for character matching. If not provided the latest version in the repositories is used.</li>
+</ul>
 <p><em>Currently there are no differences between packages and modules in <code>osbuild-composer</code>. Both are treated like an rpm package dependency.</em></p>
 <p>For example, to install <code>tmux-2.9a</code> and <code>openssh-server-8.*</code> packages, add this to your blueprint:</p>
 <pre><code class="language-toml">[[packages]]
@@ -680,35 +1094,112 @@ version = &quot;2.9a&quot;
 name = &quot;openssh-server&quot;
 version = &quot;8.*&quot;
 </code></pre>
-<h2 id="groups"><a class="header" href="#groups">Groups</a></h2>
-<p>The <code>[[groups]]</code> entries describe a group of packages to be installed into the image. Package groups are defined in the repository metadata. Each group has a descriptive name used primarily for display in user interfaces and an ID more commonly used in kickstart files. Here, the ID is the expected way of listing a group.</p>
-<p>Groups have three different ways of categorizing their packages: mandatory, default, and optional. For purposes of blueprints, just mandatory and default packages will be installed. There is no mechanism for selecting optional packages.</p>
+<p>Or in alternative syntax:</p>
+<pre><code class="language-toml">packages = [
+    { name = &quot;tmux&quot;, version = &quot;2.9a&quot; },
+    { name = &quot;openssh-server&quot;, version = &quot;8.*&quot; }
+]
+</code></pre>
+<h3 id="groups"><a class="header" href="#groups">Groups</a></h3>
+<p>The <code>groups</code> list describes contains objects with a <code>name</code>-attribute.</p>
+<ul>
+<li>The <code>name</code> attribute is a <strong>required</strong> string and must match the id of a package group in the repositories exactly.</li>
+</ul>
+<p><code>groups</code> describes groups of packages to be installed into the image. Package groups are defined in the repository metadata. Each group has a descriptive name used primarily for display in user interfaces and an ID more commonly used in kickstart files. Here, the ID is the expected way of listing a group. Groups have three different ways of categorizing their packages: mandatory, default, and optional. For the purposes of blueprints, only mandatory and default packages will be installed. There is no mechanism for selecting optional packages.</p>
 <p>For example, if you want to install the <code>anaconda-tools</code> group, add the following to your blueprint:</p>
 <pre><code class="language-toml">[[groups]]
-name=&quot;anaconda-tools&quot;
+name = &quot;anaconda-tools&quot;
 </code></pre>
-<p>groups is a TOML list, so each group needs to be listed separately, like packages but with no version number.</p>
+<p>Or in alternative syntax:</p>
+<pre><code class="language-toml">groups = [
+    { name = &quot;anaconda-tools&quot; }
+]
+</code></pre>
+<h3 id="containers"><a class="header" href="#containers">Containers</a></h3>
+<p>The <code>containers</code> list contains objects with a <code>source</code> and optional <code>tls-verify</code> attribute.</p>
+<p>These list entries describe the container images to be embedded into the image.</p>
+<ul>
+<li>The <code>source</code> attribute is a <strong>required</strong> string and is a reference to a container image at a registry.</li>
+<li>The <code>name</code> attribute is an <em>optional</em> string to set the name under which the container image will be saved in the image. If not specified <code>name</code> falls back to the same value as <code>source</code>.</li>
+<li>The <code>tls-verify</code> attribute is an <em>optional</em> boolean to disable TLS verification of the source download. By default this is set to <code>true</code>.</li>
+</ul>
+<p>The container is pulled during the image build and stored in the image at the default local container storage location that is appropriate for the image type, so that all supported container tools like <code>podman</code> and <code>cri-o</code> will be able to work with it.</p>
+<p>The embedded containers are not started, to do so you can create systemd unit files or quadlets with the files customization.</p>
+<p>To embed the latest fedora container from http://quay.io, add this to your blueprint:</p>
+<pre><code class="language-toml">[[containers]]
+source = &quot;quay.io/fedora/fedora:latest&quot;
+</code></pre>
+<p>Or in alternative syntax:</p>
+<pre><code class="language-toml">containers = [
+    { source = &quot;quay.io/fedora/fedora:latest&quot; },
+    { source = &quot;quay.io/fedora/fedora-minimal:latest&quot;, tls-verify = false, name = &quot;fedora-m&quot; },
+]
+</code></pre>
+<p>To access protected container resources a <code>containers-auth.json(5)</code> file can be used, see <a href="blueprint-reference/../user-guide/container-auth.html">Container registry credentials</a>.</p>
 <h2 id="customizations"><a class="header" href="#customizations">Customizations</a></h2>
-<p>The <code>[customizations]</code> section can be used to configure the <strong>hostname</strong> of the final image. for example:</p>
+<p>In the customizations we determine what goes into the image that's not in the default packages defined under <a href="blueprint-reference/blueprint-reference.html#content">Content</a>.</p>
+<ul>
+<li><a href="blueprint-reference/blueprint-reference.html#hostname">Hostname</a></li>
+<li><a href="blueprint-reference/blueprint-reference.html#kernel-command-line-arguments">Kernel Command Line Arguments</a></li>
+<li><a href="blueprint-reference/blueprint-reference.html#ssh-keys">SSH Keys</a></li>
+<li><a href="blueprint-reference/blueprint-reference.html#additional-users">Additional Users</a></li>
+<li><a href="blueprint-reference/blueprint-reference.html#additional-groups">Additional Groups</a></li>
+<li><a href="blueprint-reference/blueprint-reference.html#timezone">Timezone</a></li>
+<li><a href="blueprint-reference/blueprint-reference.html#locale">Locale</a></li>
+<li><a href="blueprint-reference/blueprint-reference.html#firewall">Firewall</a></li>
+<li><a href="blueprint-reference/blueprint-reference.html#systemd-services">Systemd Services</a></li>
+<li><a href="blueprint-reference/blueprint-reference.html#files-and-directories">Files and Directories</a>
+<ul>
+<li><a href="blueprint-reference/blueprint-reference.html#directories">Directories</a></li>
+<li><a href="blueprint-reference/blueprint-reference.html#files">Files</a></li>
+</ul>
+</li>
+<li><a href="blueprint-reference/blueprint-reference.html#ignition">Ignition</a></li>
+<li><a href="blueprint-reference/blueprint-reference.html#repositories">Repositories</a></li>
+<li><a href="blueprint-reference/blueprint-reference.html#filesystems">Filesystems</a></li>
+<li><a href="blueprint-reference/blueprint-reference.html#openscap">OpenSCAP</a></li>
+</ul>
+<h3 id="hostname"><a class="header" href="#hostname">Hostname</a></h3>
+<p><code>customizations.hostname</code> is an <em>optional</em> string that can be used to configure the hostname of the final image:</p>
 <pre><code class="language-toml">[customizations]
 hostname = &quot;baseimage&quot;
 </code></pre>
-<p>This is optional and can be left out to use the defaults.</p>
-<h3 id="kernel-command-line-arguments"><a class="header" href="#kernel-command-line-arguments">Kernel command-line arguments</a></h3>
-<p>This allows you to append arguments to the bootloader's kernel command line.</p>
-<p>For example:</p>
+<p>This is optional and can be left out to use the default hostname.</p>
+<h3 id="kernel"><a class="header" href="#kernel">Kernel</a></h3>
+<h4 id="kernel-command-line-arguments"><a class="header" href="#kernel-command-line-arguments">Kernel Command-Line Arguments</a></h4>
+<p>An <em>optional</em> string that allows to append arguments to the bootloader kernel command line:</p>
 <pre><code class="language-toml">[customizations.kernel]
 append = &quot;nosmt=force&quot;
 </code></pre>
 <h3 id="ssh-keys"><a class="header" href="#ssh-keys">SSH Keys</a></h3>
-<p>Set an existing user's ssh key in the final image:</p>
+<p>An <em>optional</em> list of objects containing:</p>
+<ul>
+<li>The <code>user</code> attribute is a <strong>required</strong> string and must match the name of a user in the image exactly.</li>
+<li>The <code>key</code> attribute is a <strong>required</strong> string that contains the public key to be set for that user.</li>
+</ul>
+<p><em>Warning: <code>key</code> expects the entire content of the public key file, traditionally <code>~/.ssh/id_rsa.pub</code> but any algorithm supported by the operating system in the image is valid</em></p>
+<p><em>Note: If you are adding a user you can add their SSH key in the <a href="blueprint-reference/blueprint-reference.html#additional-users">additional users</a> customization instead.</em></p>
+<p>Set an existing user's SSH key in the final image:</p>
 <pre><code class="language-toml">[[customizations.sshkey]]
 user = &quot;root&quot;
 key = &quot;PUBLIC SSH KEY&quot;
 </code></pre>
-<p>The key will be added to the user's <code>authorized_keys</code> file.</p>
-<p><em>Warning: <code>key</code> expects the entire content of the public key file, traditionally <code>~/.ssh/id_rsa.pub</code> but any algorithm supported by the OS is valid</em></p>
-<h3 id="additional-user"><a class="header" href="#additional-user">Additional user</a></h3>
+<p>The key will be added to the user's <code>authorized_keys</code> file in their home directory.</p>
+<h3 id="additional-users"><a class="header" href="#additional-users">Additional Users</a></h3>
+<p>An <em>optional</em> list of objects that contain the following attributes:</p>
+<ul>
+<li><code>name</code> a <strong>required</strong> string that sets the username.</li>
+<li><code>description</code> an <em>optional</em> string.</li>
+<li><code>password</code> an <em>optional</em> string.</li>
+<li><code>key</code> an <em>optional</em> string.</li>
+<li><code>home</code> an <em>optional</em> string.</li>
+<li><code>shell</code> an <em>optional</em> string.</li>
+<li><code>groups</code> an <em>optional</em> list of strings.</li>
+<li><code>uid</code> an <em>optional</em> integer.</li>
+<li><code>gid</code> an <em>optional</em> integer.</li>
+</ul>
+<p><em>Warning: <code>key</code> expects the entire content of the public key file, traditionally <code>~/.ssh/id_rsa.pub</code> but any algorithm supported by the operating system in the image is valid</em></p>
+<p><em>Note: If the password starts with $6$, $5$, or $2b$ it will be stored as an encrypted password. Otherwise it will be treated as a plain text password.</em></p>
 <p>Add a user to the image, and/or set their ssh key. All fields for this section are optional except for the name. The following is a complete example:</p>
 <pre><code class="language-toml">[[customizations.user]]
 name = &quot;admin&quot;
@@ -721,16 +1212,22 @@ groups = [&quot;widget&quot;, &quot;users&quot;, &quot;wheel&quot;]
 uid = 1200
 gid = 1200
 </code></pre>
-<p>If the password starts with $6$, $5$, or $2b$ it will be stored as an encrypted password. Otherwise it will be treated as a plain text password.</p>
-<p><em>Warning: <code>key</code> expects the entire content of <code>~/.ssh/id_rsa.pub</code></em></p>
-<h3 id="additional-group"><a class="header" href="#additional-group">Additional group</a></h3>
-<p>Add a group to the image. Name is required and GID is optional:</p>
+<h3 id="additional-groups"><a class="header" href="#additional-groups">Additional groups</a></h3>
+<p>An <em>optional</em> list of objects that contain the following attributes:</p>
+<ul>
+<li><code>name</code> a <strong>required</strong> string that sets the name of the group.</li>
+<li><code>gid</code> a <strong>required</strong> integer that sets the id of the group.</li>
+</ul>
 <pre><code class="language-toml">[[customizations.group]]
 name = &quot;widget&quot;
 gid = 1130
 </code></pre>
 <h3 id="timezone"><a class="header" href="#timezone">Timezone</a></h3>
-<p>Customizing the timezone and the NTP servers to use for the system:</p>
+<p>An <em>optional</em> object that contains the following attributes:</p>
+<ul>
+<li><code>timezone</code> an <em>optional</em> string. If not provided the UTC timezone is used..</li>
+<li><code>ntpservers</code> an <em>optional</em> list of strings containing NTP servers to use. If not provided the distribution defaults are used.</li>
+</ul>
 <pre><code class="language-toml">[customizations.timezone]
 timezone = &quot;US/Eastern&quot;
 ntpservers = [&quot;0.north-america.pool.ntp.org&quot;, &quot;1.north-america.pool.ntp.org&quot;]
@@ -738,66 +1235,162 @@ ntpservers = [&quot;0.north-america.pool.ntp.org&quot;, &quot;1.north-america.po
 <p>The values supported by timezone can be listed by running the command:</p>
 <pre><code>$ timedatectl list-timezones
 </code></pre>
-<p>If no timezone is setup, the system will default to using UTC. The NTP servers are also optional and will default to using the distribution defaults, which are suitable for most uses.</p>
-<p>Some image types have already NTP servers setup, for example, Google cloud image, and they cannot be overridden, because they are required to boot in the selected environment. But the timezone will be updated to the one selected in the blueprint.</p>
+<p>Some image types have already NTP servers setup such as Google Cloud images. These cannot be overridden because they are required to boot in the selected environment. However, the timezone will be updated to the one selected in the blueprint.</p>
 <h3 id="locale"><a class="header" href="#locale">Locale</a></h3>
-<p>Customize the locale settings for the system:</p>
+<p>An <em>optional</em> object that contains the following attributes to customize the locale settings for the system:</p>
+<ul>
+<li><code>languages</code> an <em>optional</em> list of strings containing locales to be installed.</li>
+<li><code>keyboard</code> an <em>optional</em> string to set the keyboard layout.</li>
+</ul>
+<p>Multiple languages can be added. The first one becomes the primary, and the others are added as secondary. You must include one or more languages or keyboards in the section.</p>
 <pre><code class="language-toml">[customizations.locale]
 languages = [&quot;en_US.UTF-8&quot;]
 keyboard = &quot;us&quot;
 </code></pre>
 <p>The values supported by languages can be listed by running can be listed by running the command:</p>
 <pre><code>$ localectl list-locales 
-
 </code></pre>
 <p>The values supported by keyboard can be listed by running the command:</p>
-<pre><code> $ localectl list-keymaps`
+<pre><code>$ localectl list-keymaps`
 </code></pre>
-<p>Multiple languages can be added. The first one becomes the primary, and the others are added as secondary. You must include one or more languages or keyboards in the section.</p>
 <h3 id="firewall"><a class="header" href="#firewall">Firewall</a></h3>
-<p>By default the firewall blocks all access, except for services that enable their ports explicitly, like sshd. The following command can be used to open other ports or services. Ports are configured using the <code>port:protocol</code> format:</p>
+<p>An <em>optional</em> object containing the following attributes:</p>
+<ul>
+<li><code>ports</code> an <em>optional</em> list of strings containing ports (or port ranges) and protocols to open.</li>
+<li><code>services</code> an <em>optional</em> object with the following attributes containing services to enable or disable for <code>firewalld</code>.
+<ul>
+<li><code>enabled</code> <em>optional</em> list of strings for services to enable.</li>
+<li><code>disabled</code> <em>optional</em> list of strings for services to disable.</li>
+</ul>
+</li>
+</ul>
+<p>By default the firewall blocks all access, except for services that enable their ports explicitly such as the sshd. The following blueprint can be used to open other ports or services.</p>
+<p><em>Note: Ports are configured using the <code>port:protocol</code> format; port ranges are configured using <code>portA-portB:protocol</code> format:</em></p>
 <pre><code class="language-toml">[customizations.firewall]
-ports = [&quot;22:tcp&quot;, &quot;80:tcp&quot;, &quot;imap:tcp&quot;, &quot;53:tcp&quot;, &quot;53:udp&quot;]
+ports = [&quot;22:tcp&quot;, &quot;80:tcp&quot;, &quot;imap:tcp&quot;, &quot;53:tcp&quot;, &quot;53:udp&quot;, &quot;30000-32767:tcp&quot;, &quot;30000-32767:udp&quot;]
 </code></pre>
 <p>Numeric ports, or their names from <code>/etc/services</code> can be used in the ports enabled/disabled lists.</p>
 <p>The blueprint settings extend any existing settings in the image templates. Thus, if sshd is already enabled, it will extend the list of ports with those already listed by the blueprint.</p>
-<p>If the distribution uses firewalld, you can specify services listed by <code>firewall-cmd --get-services</code> in a customizations.firewall.services section:</p>
+<p>If the distribution uses <code>firewalld</code> you can specify services listed by <code>firewall-cmd --get-services</code> in a <code>customizations.firewall.services</code> section:</p>
 <pre><code class="language-toml">[customizations.firewall.services]
 enabled = [&quot;ftp&quot;, &quot;ntp&quot;, &quot;dhcp&quot;]
 disabled = [&quot;telnet&quot;]
 </code></pre>
-<p>Remember that the firewall.services are different from the names in /etc/services.</p>
+<p>Remember that the <code>firewall.services</code> are different from the names in <code>/etc/services</code>.</p>
 <p>Both are optional, if they are not used leave them out or set them to an empty list <code>[]</code>. If you only want the default firewall setup this section can be omitted from the blueprint.</p>
-<p><em>NOTE: The Google and OpenStack templates explicitly disable the firewall for their environment. This cannot be overridden by the blueprint.</em></p>
-<h3 id="systemd-services"><a class="header" href="#systemd-services">Systemd services</a></h3>
-<p>This section can be used to control which services are enabled at boot time. Some image types already have services enabled or disabled in order for the image to work correctly, and cannot be overridden. For example, <code>ami</code> image type requires <code>sshd</code>, <code>chronyd</code>, and <code>cloud-init</code> services. Without them, the image will not boot. Blueprint services do not replace this services, but add them to the list of services already present in the templates, if any. </p>
-<p>The service names are systemd service units. You may specify any systemd unit file accepted by systemctl enable, for example, cockpit.socket:</p>
+<p><em>Note: The Google and OpenStack templates explicitly disable the firewall for their environment. This cannot be overridden by the blueprint.</em></p>
+<h3 id="systemd-services"><a class="header" href="#systemd-services">Systemd Services</a></h3>
+<p>An <em>optional</em> object containing the following attributes:</p>
+<ul>
+<li><code>enabled</code> an <em>optional</em> list of strings containing services to be enabled.</li>
+<li><code>disabled</code> an <em>optional</em> list of strings containing services to be disabled.</li>
+</ul>
 <pre><code class="language-toml">[customizations.services]
 enabled = [&quot;sshd&quot;, &quot;cockpit.socket&quot;, &quot;httpd&quot;]
 disabled = [&quot;postfix&quot;, &quot;telnetd&quot;]
 </code></pre>
-<h2 id="distribution-selection-with-blueprints"><a class="header" href="#distribution-selection-with-blueprints">Distribution selection with blueprints</a></h2>
-<p>The blueprint now supports a new <code>distro</code> field that will be used to select the
-distribution to use when composing images, or depsolving the blueprint. If
-<code>distro</code> is left blank it will use the host distribution. If you upgrade the
-host operating system the blueprints with no <code>distro</code> set will build using the
-new os.</p>
-<p>eg. A blueprint that will always build a fedora-32 image, no matter what
-version is running on the host:</p>
-<pre><code class="language-toml">name = &quot;tmux&quot;
-description = &quot;tmux image with openssh&quot;
-version = &quot;1.2.16&quot;
-distro = &quot;fedora-32&quot;
-
-[[packages]]
-name = &quot;tmux&quot;
-version = &quot;*&quot;
-
-[[packages]]
-name = &quot;openssh-server&quot;
-version = &quot;*&quot;
+<p>This section can be used to control which services are enabled at boot time. Some image types already have services enabled or disabled in order for the image to work correctly, and cannot be overridden. For example, <code>ami</code> image type requires <code>sshd</code>, <code>chronyd</code>, and <code>cloud-init</code> services. Without them, the image will not boot. Blueprint services do not replace this services, but add them to the list of services already present in the templates, if any. </p>
+<p>The service names are systemd service units. You may specify any systemd unit file accepted by systemctl enable, for example, cockpit.socket:</p>
+<h3 id="files-and-directories"><a class="header" href="#files-and-directories">Files and directories</a></h3>
+<p>You can use blueprint customizations to create custom files and directories in the image. These customizations are currently restricted only to the <code>/etc</code> directory.</p>
+<p>When using the custom files and directories customization, the following rules apply:</p>
+<ul>
+<li>The path must be an absolute path and must be under <code>/etc</code>.</li>
+<li>There must be no duplicate paths of the same directory.</li>
+<li>There must be no duplicate paths of the same file.</li>
+</ul>
+<p>These customizations are not supported for image types that deploy ostree commits (such as <code>edge-raw-image</code>, <code>edge-installer</code>, <code>edge-simplified-installer</code>).</p>
+<h4 id="directories"><a class="header" href="#directories">Directories</a></h4>
+<p>You can create custom directories by specifying items in the <code>customizations.directories</code> list. The existence of a specified directory is handled gracefully only if no explicit <code>mode</code>, <code>user</code> or <code>group</code> is specified. If any of these customizations are specified and the directory already exists in the image, the image build will fail. The intention is to prevent changing the ownership or permissions of existing directories.</p>
+<p>The following example creates a directory <code>/etc/foobar</code> with all the default settings:</p>
+<pre><code class="language-toml">[[customizations.directories]]
+path = &quot;/etc/foobar&quot;
+mode = &quot;0755&quot;
+user = &quot;root&quot;
+group = &quot;root&quot;
+ensure_parents = false
 </code></pre>
-<h3 id="filesystem-support"><a class="header" href="#filesystem-support">Filesystem Support</a></h3>
+<ul>
+<li><code>path</code> is the path to the directory to create. It must be an absolute path under <code>/etc</code>. This is the only required field.</li>
+<li><code>mode</code> is the octal mode to set on the directory. If not specified, the default is <code>0755</code>. The leading zero is optional.</li>
+<li><code>user</code> is the user to set as the owner of the directory. If not specified, the default is <code>root</code>. Can be specified as user name (string) or as user id (integer).</li>
+<li><code>group</code> is the group to set as the owner of the directory. If not specified, the default is <code>root</code>. Can be specified as group name (string) or as group id (integer).</li>
+<li><code>ensure_parents</code> is a boolean that specifies whether to create parent directories as needed. If not specified, the default is <code>false</code>.</li>
+</ul>
+<h4 id="files"><a class="header" href="#files">Files</a></h4>
+<p>You can create custom files by specifying items in the <code>customizations.files</code> list. You can use the customization to create new files or to replace existing ones, if not restricted by the policy specified below. If the target path is an existing symlink to another file, the symlink will be replaced by the custom file.</p>
+<p>Please note that the parent directory of a specified file must exist. If it does not exist, the image build will fail. One can ensure that the parent directory exists by specifying it in the <code>customizations.directories</code> list.</p>
+<p>In addition, the following files are not allowed to be created or replaced by policy:</p>
+<ul>
+<li><code>/etc/fstab</code></li>
+<li><code>/etc/shadow</code></li>
+<li><code>/etc/passwd</code></li>
+<li><code>/etc/group</code></li>
+</ul>
+<p>Using the <code>files</code> customization comes with a high chance of creating an image that doesn't boot. <strong>Use this feature only if you know what you are doing</strong>. Although the <code>files</code> customization can be used to configure parts of the OS which can also be configured by other blueprint customizations, this use is discouraged. If possible, users should always default to using the specialized blueprint customizations. Note that if you combine the files customizations with other customizations, the other customizations may not work as expected or may be overridden by the files customizations.</p>
+<p>The following example creates a file <code>/etc/foobar</code> with the contents <code>Hello world!</code>:</p>
+<pre><code class="language-toml">[[customizations.files]]
+path = &quot;/etc/foobar&quot;
+mode = &quot;0644&quot;
+user = &quot;root&quot;
+group = &quot;root&quot;
+data = &quot;Hello world!&quot;
+</code></pre>
+<ul>
+<li><code>path</code> is the path to the file to create. It must be an absolute under <code>/etc</code>. This is the only required field.</li>
+<li><code>mode</code> is the octal mode to set on the file. If not specified, the default is <code>0644</code>. The leading zero is optional.</li>
+<li><code>user</code> is the user to set as the owner of the file. If not specified, the default is <code>root</code>. Can be specified as user name (string) or as user id (integer).</li>
+<li><code>group</code> is the group to set as the owner of the file. If not specified, the default is <code>root</code>. Can be specified as group name (string) or as group id (integer).</li>
+<li><code>data</code> is the plain text contents of the file. If not specified, the default is an empty file.</li>
+</ul>
+<p>Note that the <code>data</code> property can be specified in any of the ways supported by TOML. Some of them require escaping certain characters and others don't. Please refer to the <a href="https://toml.io/en/v1.0.0#string">TOML specification</a> for more details.</p>
+<h3 id="ignition"><a class="header" href="#ignition">Ignition</a></h3>
+<p>The <code>customizations.ignition</code> section allows users to provide <a href="https://coreos.github.io/ignition/">Ignition</a> configuration files to be used in <code>edge-raw-image</code> and <code>edge-simplified-installer</code> images. Check the RHEL for Edge (<code>r4e</code>) <a href="https://coreos.github.io/butane/specs/">butane</a> specification for a description of the supported configuration options.</p>
+<p>The blueprint configuration can be done <em>either</em> by embedding an Ignition configuration file into the image (only available for <code>edge-simplified-installer</code>), or providing a provisioning URL that will be fetched at first boot.</p>
+<h4 id="ignitionembedded-configuration"><a class="header" href="#ignitionembedded-configuration"><code>ignition.embedded</code> configuration</a></h4>
+<pre><code class="language-toml">[customizations.ignition.embedded]
+config = &quot;eyJpZ25pdGlvbiI6eyJ2ZXJzaW9uIjoiMy4zLjAifSwicGFzc3dkIjp7InVzZXJzIjpbeyJncm91cHMiOlsid2hlZWwiXSwibmFtZSI6ImNvcmUiLCJwYXNzd29yZEhhc2giOiIkNiRqZnVObk85dDFCdjdOLjdrJEhxUnhxMmJsdFIzek15QUhqc1N6YmU3dUJIWEVyTzFZdnFwaTZsamNJMDZkUUJrZldYWFpDdUUubUpja2xQVHdhQTlyL3hwSmlFZFdEcXR4bGU3aDgxIn1dfX0=&quot;
+</code></pre>
+<p>Add a <code>base64</code> encoded Ignition configuration in the <code>config</code> field. This Ignition configuration will be included in the <code>edge-simplified-installer</code> image.</p>
+<h4 id="ignitionfirstboot-configuration"><a class="header" href="#ignitionfirstboot-configuration"><code>ignition.firstboot</code> configuration</a></h4>
+<pre><code class="language-toml">[customizations.ignition.firstboot]
+url = &quot;http://some-server/configuration.ig&quot;
+</code></pre>
+<p>Add a URL pointing to the Ignition configuration that will be fetched during the first boot in the <code>url</code> field. Available for both <code>edge-simplified-installer</code> and <code>edge-raw-image</code>.</p>
+<h3 id="repositories"><a class="header" href="#repositories">Repositories</a></h3>
+<p>Third-party repositories are supported by the blueprint customizations. A repository can be defined and enabled in the blueprints which will then be saved to the <code>/etc/yum.repos.d</code> directory in an image.
+An optional <code>filename</code> argument can be set, otherwise the repository will be saved using the the repository ID, i.e. <code>/etc/yum.repos.d/&lt;repo-id&gt;.repo</code>. </p>
+<p>Please note custom repositories <strong>cannot be used at build time to install third-party packages</strong>. These customizations are used to save and enable third-party repositories on the image. For more information, or if you 
+wish to install a package from a third-party repository, please continue reading <a href="blueprint-reference/../user-guide/repository-customizations.html">here</a>.</p>
+<p>The following example can be used to create a third-party repository:</p>
+<pre><code class="language-toml">[[customizations.repositories]]
+id = &quot;example&quot;
+name=&quot;Example repo&quot;
+baseurls=[ &quot;https://example.com/yum/download&quot; ]
+gpgcheck=true
+gpgkeys = [ &quot;https://example.com/public-key.asc&quot; ]
+enabled=true
+</code></pre>
+<p>Since no filename is specified, the repo will be saved to <code>/etc/yum.repos.d/example.repo</code>.</p>
+<p>The blueprint accepts the following options:</p>
+<ul>
+<li><code>id</code> (required)</li>
+<li><code>name</code></li>
+<li><code>filename</code></li>
+<li><code>baseurls</code> (array)</li>
+<li><code>mirrorlist</code></li>
+<li><code>metalink</code></li>
+<li><code>gpgkeys</code> keys (array)</li>
+<li><code>gpgcheck</code></li>
+<li><code>repo_gpgcheck</code></li>
+<li><code>priority</code></li>
+<li><code>ssl_verify</code></li>
+</ul>
+<p><em>Note: the <code>baseurls</code> and <code>gpgkeys</code> fields both accept arrays as input. One of <code>baseurls</code>, <code>metalink</code> &amp; <code>mirrorlist</code> must be provided</em></p>
+<h4 id="repository-gpg-keys"><a class="header" href="#repository-gpg-keys">Repository GPG Keys</a></h4>
+<p>The blueprint accepts both inline GPG keys and GPG key urls. If an inline GPG key is provided it will be saved to the <code>/etc/pki/rpm-gpg</code> directory and will be referenced accordingly
+in the repository configuration. <strong>GPG keys are not imported to the RPM database</strong> and will only be imported when first installing a package from the third-party repository.</p>
+<h3 id="filesystems"><a class="header" href="#filesystems">Filesystems</a></h3>
 <p>The blueprints can be extended to provide filesytem support. Currently the <code>mountpoint</code> and minimum partition <code>size</code> can be set. Custom mountpoints are currently only supported for <code>RHEL 8.5</code> &amp; <code>RHEL 9.0</code>. For other distributions, only the <code>root</code> partition is supported, the size argument being an alias for the image size. </p>
 <pre><code class="language-toml">[[customizations.filesystem]]
 mountpoint = &quot;/var&quot;
@@ -812,8 +1405,20 @@ size = 2147483648
 <li><code>/usr</code></li>
 <li><code>/app</code></li>
 <li><code>/data</code></li>
+<li><code>/tmp</code></li>
 </ul>
-<h2 id="example-blueprint-1"><a class="header" href="#example-blueprint-1">Example Blueprint</a></h2>
+<h3 id="openscap-1"><a class="header" href="#openscap-1">OpenSCAP</a></h3>
+<p>From <code>RHEL 8.7</code> &amp; <code>RHEL 9.1</code> support has been added for <code>OpenSCAP</code> build-time remediation. The blueprints accept two fields:</p>
+<ul>
+<li>the <code>datastream</code> path to the remediation instructions</li>
+<li>the <code>profile_id</code> of the desired security profile</li>
+</ul>
+<p>Please see <a href="blueprint-reference/../user-guide/oscap-remediation.html">the OpenSCAP page</a> for the list of available security profiles.</p>
+<pre><code class="language-toml">[customizations.openscap]
+datastream = &quot;/usr/share/xml/scap/ssg/content/ssg-rhel8-ds.xml&quot;
+profile_id = &quot;xccdf_org.ssgproject.content_profile_cis&quot;
+</code></pre>
+<h2 id="example-blueprints"><a class="header" href="#example-blueprints">Example Blueprints</a></h2>
 <p>The following blueprint example will:</p>
 <ul>
 <li>install the <code>tmux</code>, <code>git</code>, and <code>vim-enhanced</code> packages</li>
@@ -877,17 +1482,756 @@ name = &quot;students&quot;
 [[customizations.filesystem]]
 mountpoint = &quot;/&quot;
 size = 2147483648
+
+[customizations.openscap]
+datastream = &quot;/usr/share/xml/scap/ssg/content/ssg-rhel8-ds.xml&quot;
+profile_id = &quot;xccdf_org.ssgproject.content_profile_cis&quot;
 </code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="current-architecture"><a class="header" href="#current-architecture">Current architecture</a></h2>
+<p>This diagram shows the overall architecture, and each sub-section goes into details about the three main
+components, which are run as independent services.</p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<p><svg
+   id="artwork"
+   viewBox="0 0 760 311.63"
+   version="1.1"
+   sodipodi:docname="306_OpenShift_OSBuild_upstream_0123.svg"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+&lt;sodipodi:namedview
+id=&quot;namedview177&quot;
+pagecolor=&quot;#ffffff&quot;
+bordercolor=&quot;#666666&quot;
+borderopacity=&quot;1.0&quot;
+inkscape:showpageshadow=&quot;2&quot;
+inkscape:pageopacity=&quot;0.0&quot;
+inkscape:pagecheckerboard=&quot;0&quot;
+inkscape:deskcolor=&quot;#d1d1d1&quot;
+showgrid=&quot;false&quot;
+inkscape:zoom=&quot;1.7118421&quot;
+inkscape:cx=&quot;287.99385&quot;
+inkscape:cy=&quot;155.97233&quot;
+inkscape:window-width=&quot;2560&quot;
+inkscape:window-height=&quot;1371&quot;
+inkscape:window-x=&quot;0&quot;
+inkscape:window-y=&quot;0&quot;
+inkscape:window-maximized=&quot;1&quot;
+inkscape:current-layer=&quot;artwork&quot; /&gt;
+<defs
+     id="defs4">
+<style
+       id="style2">
+.cls-1, .cls-2, .cls-3 {
+fill: none;
+}
+.cls-2 {
+stroke: #06c;
+}
+.cls-2, .cls-4 {
+stroke-linecap: round;
+stroke-linejoin: round;
+}
+.cls-5 {
+fill: #06c;
+}
+.cls-6, .cls-4 {
+fill: #fff;
+}
+.cls-7 {
+fill: #e8e8e8;
+}
+.cls-8, .cls-9 {
+font-family: RedHatTextRoman-Medium, 'Red Hat Text';
+font-variation-settings: 'wght' 500;
+font-weight: 500;
+}
+.cls-8, .cls-10, .cls-11 {
+fill: #151515;
+font-size: 12px;
+}
+.cls-12 {
+fill: #ececec;
+font-size: 10px;
+}
+.cls-12, .cls-13 {
+font-family: RedHatTextRoman-Regular, 'Red Hat Text';
+font-variation-settings: 'wght' 400;
+}
+.cls-3 {
+stroke: #adadad;
+stroke-miterlimit: 10;
+}
+.cls-4 {
+stroke: #5b5b5b;
+stroke-width: 1.5px;
+}
+.cls-11 {
+font-family: RedHatTextRoman-Bold, 'Red Hat Text';
+font-variation-settings: 'wght' 700;
+font-weight: 700;
+}
+</style>
+</defs>
+<g
+     id="g12">
+<text
+       class="cls-12"
+       transform="translate(715.77 294.65)"
+       id="text8"><tspan
+         x="0"
+         y="0"
+         id="tspan6">306_0123</tspan></text>
+<rect
+       class="cls-1"
+       y="271.63"
+       width="760"
+       height="40"
+       id="rect10" />
+</g>
+<g
+     id="g20">
+<rect
+       class="cls-7"
+       x="575"
+       y="20"
+       width="185"
+       height="114.5"
+       transform="translate(1335 154.5) rotate(-180)"
+       id="rect14" />
+<text
+       class="cls-11"
+       transform="translate(590 43.85)"
+       id="text18"><tspan
+         x="0"
+         y="0"
+         id="tspan16">AmazonEC2</tspan></text>
+</g>
+<rect
+     class="cls-7"
+     x="375"
+     y="20"
+     width="175"
+     height="114.5"
+     transform="translate(925 154.5) rotate(-180)"
+     id="rect22" />
+<text
+     class="cls-11"
+     transform="translate(390 43.85)"
+     id="text26"><tspan
+       x="0"
+       y="0"
+       id="tspan24">api.openshift.com</tspan></text>
+<a
+     id="a403"
+     xlink:href="https://github.com/osbuild/osbuild-composer/tree/c18f2962aeb28f3b8b054085529b9f3b0d7e9677">
+<g
+       id="g40">
+<g
+         id="g32">
+<rect
+           class="cls-6"
+           x="390.5"
+           y="60"
+           width="144"
+           height="49"
+           id="rect28" />
+<path
+           class="cls-5"
+           d="M534,60.5v48h-143V60.5h143m1-1h-145v50h145V59.5h0Z"
+           id="path30" />
+</g>
+<text
+         class="cls-8"
+         transform="translate(420.17 81.44)"
+         id="text38"><tspan
+           x="0"
+           y="0"
+           id="tspan34">image-builder-</tspan><tspan
+           x="14.45"
+           y="13"
+           id="tspan36">composer</tspan></text>
+</g>
+</a>
+<rect
+     class="cls-7"
+     x="375"
+     y="159.5"
+     width="175"
+     height="135"
+     transform="translate(925 454) rotate(-180)"
+     id="rect42" />
+<rect
+     class="cls-7"
+     x="175"
+     y="159.5"
+     width="175"
+     height="135"
+     transform="translate(525 454) rotate(-180)"
+     id="rect44" />
+<text
+     class="cls-11"
+     transform="translate(390 279.57)"
+     id="text48"><tspan
+       x="0"
+       y="0"
+       id="tspan46">AmazonRDS</tspan></text>
+<text
+     class="cls-11"
+     transform="translate(190 279.57)"
+     id="text52"><tspan
+       x="0"
+       y="0"
+       id="tspan50">AmazonRDS</tspan></text>
+<rect
+     class="cls-7"
+     x="0"
+     y="20"
+     width="350"
+     height="114.5"
+     transform="translate(350 154.5) rotate(-180)"
+     id="rect54" />
+<g
+     id="g76">
+<g
+       id="g64">
+<path
+         class="cls-4"
+         d="M262.5,184.25c-10.19,0-18.45,4.06-18.45,9.69v16.94c0,5.63,8.26,10.19,18.45,10.19s18.45-4.56,18.45-10.19v-16.94c0-5.63-8.26-9.69-18.45-9.69Z"
+         id="path56" />
+<path
+         class="cls-4"
+         d="M280.95,205.19c0,5.63-8.26,10.19-18.45,10.19s-18.45-4.56-18.45-10.19"
+         id="path58" />
+<path
+         class="cls-4"
+         d="M280.95,199.44c0,5.63-8.26,10.19-18.45,10.19s-18.45-4.56-18.45-10.19"
+         id="path60" />
+<path
+         class="cls-4"
+         d="M280.95,193.94c0,5.63-8.26,10.19-18.45,10.19s-18.45-4.56-18.45-10.19,8.26-9.69,18.45-9.69,18.45,4.06,18.45,9.69Z"
+         id="path62" />
+</g>
+<text
+       class="cls-10"
+       transform="translate(212.83 238.72)"
+       id="text74"><tspan
+         class="cls-9"
+         id="tspan68"><tspan
+           x="0"
+           y="0"
+           id="tspan66">image-builder-db</tspan></tspan><tspan
+         class="cls-13"
+         id="tspan72"><tspan
+           x="1.16"
+           y="15"
+           id="tspan70">(Insights account)</tspan></tspan></text>
+</g>
+<g
+     id="g82">
+<line
+       class="cls-2"
+       x1="180.83"
+       y1="84.5"
+       x2="165.01"
+       y2="84.5"
+       id="line78" />
+<polygon
+       class="cls-5"
+       points="179.37 79.51 188.01 84.5 179.37 89.49 179.37 79.51"
+       id="polygon80" />
+</g>
+<g
+     id="g88">
+<line
+       class="cls-2"
+       x1="262.5"
+       y1="173.79"
+       x2="262.5"
+       y2="109.5"
+       id="line84" />
+<polygon
+       class="cls-5"
+       points="267.49 172.34 262.5 180.97 257.51 172.34 267.49 172.34"
+       id="polygon86" />
+</g>
+<g
+     id="g110">
+<g
+       id="g98">
+<path
+         class="cls-4"
+         d="M462.5,184.25c-10.19,0-18.45,4.06-18.45,9.69v16.94c0,5.63,8.26,10.19,18.45,10.19s18.45-4.56,18.45-10.19v-16.94c0-5.63-8.26-9.69-18.45-9.69Z"
+         id="path90" />
+<path
+         class="cls-4"
+         d="M480.95,205.19c0,5.63-8.26,10.19-18.45,10.19s-18.45-4.56-18.45-10.19"
+         id="path92" />
+<path
+         class="cls-4"
+         d="M480.95,199.44c0,5.63-8.26,10.19-18.45,10.19s-18.45-4.56-18.45-10.19"
+         id="path94" />
+<path
+         class="cls-4"
+         d="M480.95,193.94c0,5.63-8.26,10.19-18.45,10.19s-18.45-4.56-18.45-10.19,8.26-9.69,18.45-9.69,18.45,4.06,18.45,9.69Z"
+         id="path96" />
+</g>
+<text
+       class="cls-10"
+       transform="translate(424.51 238.72)"
+       id="text108"><tspan
+         class="cls-9"
+         id="tspan102"><tspan
+           x="0"
+           y="0"
+           id="tspan100">composer-db</tspan></tspan><tspan
+         class="cls-13"
+         id="tspan106"><tspan
+           x="-12.14"
+           y="15"
+           id="tspan104">(AppSRE account)</tspan></tspan></text>
+</g>
+<g
+     id="g116">
+<line
+       class="cls-2"
+       x1="462.5"
+       y1="173.79"
+       x2="462.5"
+       y2="109.5"
+       id="line112" />
+<polygon
+       class="cls-5"
+       points="467.49 172.34 462.5 180.97 457.51 172.34 467.49 172.34"
+       id="polygon114" />
+</g>
+<g
+     id="g122">
+<line
+       class="cls-2"
+       x1="380.32"
+       y1="84.5"
+       x2="335"
+       y2="84.5"
+       id="line118" />
+<polygon
+       class="cls-5"
+       points="378.86 79.51 387.5 84.5 378.86 89.49 378.86 79.51"
+       id="polygon120" />
+</g>
+<g
+     id="g128">
+<line
+       class="cls-2"
+       x1="590"
+       y1="84.5"
+       x2="544.68"
+       y2="84.5"
+       id="line124" />
+<polygon
+       class="cls-5"
+       points="546.14 79.51 537.5 84.5 546.14 89.49 546.14 79.51"
+       id="polygon126" />
+</g>
+<text
+     class="cls-11"
+     transform="translate(15 43.85)"
+     id="text132"><tspan
+       x="0"
+       y="0"
+       id="tspan130">console.redhat.com</tspan></text>
+<a
+     id="a294"
+     xlink:href="https://github.com/RedHatInsights/image-builder-frontend/tree/d0024a8d48eece8eb5618ca03d8c7dce07fd347e">
+<g
+       id="g146"
+       onclick="https://github.com/RedHatInsights/image-builder-frontend/tree/d0024a8d48eece8eb5618ca03d8c7dce07fd347e">
+<g
+         id="g138">
+<rect
+           class="cls-6"
+           x="15.5"
+           y="60"
+           width="149"
+           height="49"
+           id="rect134" />
+<path
+           class="cls-5"
+           d="M164,60.5v48H16V60.5H164m1-1H15v50H165V59.5h0Z"
+           id="path136" />
+</g>
+<text
+         class="cls-8"
+         transform="translate(50.17 81.44)"
+         id="text144"><tspan
+           x="0"
+           y="0"
+           id="tspan140">image-builder-</tspan><tspan
+           x="17.37"
+           y="13"
+           id="tspan142">frontend</tspan></text>
+</g>
+</a>
+<polyline
+     class="cls-3"
+     points="595 114.5 740 114.5 740 64.5"
+     id="polyline148" />
+<polyline
+     class="cls-3"
+     points="600 119.5 745 119.5 745 69.5"
+     id="polyline150" />
+<a
+     id="a510"
+     xlink:href="https://github.com/osbuild/osbuild/tree/76a80bd8c590dba4480305efcb067145db3bf347">
+<g
+       id="g502">
+<g
+         id="g156">
+<rect
+           class="cls-6"
+           x="590.5"
+           y="60"
+           width="144"
+           height="49"
+           id="rect152" />
+<path
+           class="cls-5"
+           d="M734,60.5v48h-143V60.5h143m1-1h-145v50h145V59.5h0Z"
+           id="path154" />
+</g>
+<text
+         class="cls-8"
+         transform="translate(628.43 88)"
+         id="text160"><tspan
+           x="0"
+           y="0"
+           id="tspan158">worker fleet</tspan></text>
+</g>
+</a>
+<a
+     id="a303"
+     xlink:href="https://github.com/osbuild/image-builder/tree/2449d8839a8d485034ebf51db449a5a3dcd540b6">
+<g
+       id="g174">
+<g
+         id="g166">
+<rect
+           class="cls-6"
+           x="190.5"
+           y="60"
+           width="144"
+           height="49"
+           id="rect162" />
+<path
+           class="cls-5"
+           d="M334,60.5v48H191V60.5h143m1-1H190v50h145V59.5h0Z"
+           id="path164" />
+</g>
+<text
+         class="cls-8"
+         transform="translate(220.17 81.44)"
+         id="text172"><tspan
+           x="0"
+           y="0"
+           id="tspan168">image-builder-</tspan><tspan
+           x="18.4"
+           y="13"
+           id="tspan170">backend</tspan></text>
+</g>
+</a>
+</svg></p>
+<p>The metadata defining the service for App-Interface is kept upstream and open as templates for both the <a href="https://github.com/osbuild/osbuild-composer/blob/main/templates/composer.yml">osbuild-composer</a> and <a href="https://github.com/osbuild/image-builder/blob/main/templates/image-builder.yml">image-builder components</a>.
+The tooling to operate the service is to large parts open source and publicly accessible, e.g. qontract in the form of <a href="https://github.com/app-sre/qontract-server">qontract-server</a>, <a href="https://github.com/app-sre/qontract-reconcile">qontract-reconcile</a>.
+The architecture documents in this section comply with the AppSRE contract.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="image-builder-crc-api-architecture-document"><a class="header" href="#image-builder-crc-api-architecture-document">Image Builder CRC API Architecture Document</a></h1>
+<h2 id="service-description"><a class="header" href="#service-description">Service Description</a></h2>
+<p>The <code>image-builder</code> API in CRC serves as the public API used either directly by customers or through the
+CRC UI. Through this API customers can create, manage and view image builds. The service in CRC is
+responsible for access management, quotas, rate-limiting, etc. In the future it may interact with other
+services in CRC in order to add value to the image build experience.</p>
+<p>The actual image build requests are passed on to <code>composer</code>, which is outside the scope of this document.</p>
+<h2 id="technology-stack"><a class="header" href="#technology-stack">Technology Stack</a></h2>
+<p>The service is written in Golang, and the list of dependencies can be found in
+<a href="https://github.com/osbuild/image-builder/blob/main/go.mod">go.mod</a>.</p>
+<p>The <code>ubi8/go-toolset:latest</code> container is used as a builder, and <code>ubi8/ubi-minimal:latest</code> to run the
+binary. The container images are located here: https://quay.io/repository/cloudservices/image-builder.</p>
+<h2 id="components"><a class="header" href="#components">Components</a></h2>
+<p>The service consists of the image-builder app running in CRC, and its backing database. If either of
+these are unavailable, the service does not work at all, new images cannot be built, and historical
+builds cannot be introspected. Already built images that may be in used by customers are unaffected,
+only their history and metadata can no longer be queried through the service.</p>
+<h2 id="routes"><a class="header" href="#routes">Routes</a></h2>
+<p>The public route is <code>/api/v1/image-builder</code>, a detailed list can be found at
+<a href="https://cloud.redhat.com/beta/docs/api/image-builder">https://cloud.redhat.com/beta/docs/api/image-builder</a>.</p>
+<h2 id="dependencies"><a class="header" href="#dependencies">Dependencies</a></h2>
+<p>Image builder has the following internal and external dependencies.</p>
+<h3 id="internal"><a class="header" href="#internal">Internal</a></h3>
+<p>Image Builder relies on 3Scale to set the <code>x-rh-identity</code> header. It uses the header for authentication,
+and quota application. It also uses the account number to map previously made compose requests to that
+account number.</p>
+<h3 id="external"><a class="header" href="#external">External</a></h3>
+<ul>
+<li>AWS RDS for data storage. See the section on state.</li>
+<li>Quay as a container registry. Without this, the service cannot be redeployed.</li>
+<li>Github as an upstream repository. Without this, the service cannot be redeployed.</li>
+<li>Gitlab, AWS EC2, and Openstack for upstream testing. Without this changes to the service cannot land.</li>
+</ul>
+<h2 id="service-diagram"><a class="header" href="#service-diagram">Service Diagram</a></h2>
+<p>See parent page.</p>
+<h2 id="application-success-criteria"><a class="header" href="#application-success-criteria">Application Success Criteria</a></h2>
+<ol>
+<li>Customers can queue image builds and view their state.</li>
+<li>Customers can introspect and manage existing builds.</li>
+<li>Quotas are applied according to policy to manage cost of running the service.</li>
+<li>The service is able to provide functionality to make its own functionality discoverable</li>
+</ol>
+<ul>
+<li>Enumerate supported features</li>
+<li>Package search</li>
+</ul>
+<h2 id="slos"><a class="header" href="#slos">SLOs</a></h2>
+<p>The image builder API has the following SLOs, but we aim to add more and make these stricter as we
+gain more experience from production. Our SLO targets are defined in App Interface.</p>
+<h3 id="latency"><a class="header" href="#latency">Latency</a></h3>
+<p>The ratio of requests that are considered significantly fast. The aim is to make it possible
+to have a responsive UI. The exception is currently the <code>/compose</code> call, which is long-running and
+our SLO targets reflect a higher latency threshold. The UI must be implemented with this 
+in mind.</p>
+<h3 id="stability"><a class="header" href="#stability">Stability</a></h3>
+<p>The proportion of successful (or unsuccessful due to user error) <code>/compose</code> requests. The aim is for users
+to be able to reliably queue image builds, even if some retries are required.</p>
+<h2 id="state"><a class="header" href="#state">State</a></h2>
+<p>The service depends on a PostgreSQL database, the default postgres12-rds-1 template is used. The
+database stores metadata about each build, making it possible to enumerate past builds and to enforce
+quota limits. If the state is lost historical data would be lost, but the user could still use their
+images if they have saved the necessary information. The quote calculations would be off, but in the
+worst case scenario customers would be able to build more images than they are meant to, which would
+not be a big problem.</p>
+<h2 id="load-testing"><a class="header" href="#load-testing">Load Testing</a></h2>
+<p>Image Builder is currently being load tested on a weekly basis with failure thresholds reflecting the
+SLIs. The load tests happen against stage CRC. An example can be found
+<a href="https://gitlab.com/osbuild/ci/image-builder/-/jobs/1541382293">here</a>.</p>
+<p>More information can be found <a href="https://github.com/osbuild/image-builder/blob/main/test/README.md">upstream</a>.</p>
+<h2 id="capacity"><a class="header" href="#capacity">Capacity</a></h2>
+<p>The needed capacity might grow a little bit in all directions (DB and number of pods), but any growth should
+be slow. Currently  pods are running, and limits have been set on memory or cpu usage. The default insights
+limits and quotas are used, which should be more than enough.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="image-builder-composer-api-architecture-document"><a class="header" href="#image-builder-composer-api-architecture-document">Image Builder Composer API Architecture Document</a></h1>
+<h2 id="service-description-1"><a class="header" href="#service-description-1">Service Description</a></h2>
+<p>The <code>image-builder-composer</code> API routed via <a href="https://api.openshift.com/">api.openshift.com</a> serves as a
+job queue for pending image builds as well as a metadata-store for already built images. When an image
+build is queued via the API it is turned into a set of jobs that are put on the job queue, and together
+do the necessary tasks to determine how the image should be built, build the image, upload the image to
+its destination, and possibly register or import it to its final format.</p>
+<p>The <code>image-builder-worker</code> API routed via <a href="https://api.openshift.com/">api.openshift.com</a> serves as the
+other side of the job queue, where jobs can be dequeued to be executed and their results posted.</p>
+<p>The actual jobs are executed by <code>workers</code>, which is outside the scope of this document.</p>
+<h2 id="multitenancy"><a class="header" href="#multitenancy">Multitenancy</a></h2>
+<p><code>osbuild-composer</code> deployments in both <a href="https://api.openshift.com/">api.openshift.com</a> and <a href="https://api.stage.openshift.com/">api.stage.openshift.com</a> have support for running builds for multiple tenants. Jobs created by a tenant can be picked only by workers belonging to the same tenant.</p>
+<p>The tenant of an API request is currently determined from the JWT token that the API caller used. Specifically, the implementation extracts the tenant ID from <code>rh-org-id</code> or <code>account_id</code> fields. This is defined in <a href="https://github.com/osbuild/osbuild-composer/blob/de72b36dddfc703d76d79479dde7b92f0a78e924/templates/composer.yml#L261">the deployment template</a>.</p>
+<p>Internally in <code>osbuild-composer</code>, the tenant ID is prefixed with <code>org-</code> and saved to the jobqueue as a <code>channel</code>, see <a href="https://github.com/osbuild/osbuild-composer/blob/de72b36dddfc703d76d79479dde7b92f0a78e924/pkg/jobqueue/jobqueue.go#L35">composer's source code</a>.</p>
+<h2 id="technology-stack-1"><a class="header" href="#technology-stack-1">Technology Stack</a></h2>
+<p>The service is written in Golang, and the list of dependencies can be found in
+<a href="https://github.com/osbuild/osbuild-composer/blob/main/go.mod">go.mod</a>.</p>
+<p>The <code>ubi8/go-toolset:latest</code> container is used as a builder, and <code>ubi8/ubi-minimal:latest</code> to run the
+binary. The container images are located here: https://quay.io/repository/app-sre/composer.</p>
+<h2 id="components-1"><a class="header" href="#components-1">Components</a></h2>
+<p>The service consists of the composer and the composer-worker apps running in an AppSRE managed cluster,
+and their backing database.</p>
+<p>If either composer or the database are unavailable, the service does not work at all, new images
+cannot be built, and historical builds cannot be introspected. Already built images that may be in
+used by customers are unaffected, only their history and metadata can no longer be queried through
+the service.</p>
+<p>If composer-workers is unavailable, new jobs can be queued and old ones can be queried, but workers
+will not be able to pick up new jobs until the API is back, and they will not be able to report back
+results correctly for jobs they finish while the API is down.</p>
+<h2 id="routes-1"><a class="header" href="#routes-1">Routes</a></h2>
+<p>The public routes are <code>/api/image-builder-composer/v2/</code> and <code>/api/image-builder/worker/v1/</code>, detailed
+lists can be found at https://api.openshift.com/api/image-builder-composer/v2/openapi and
+https://api.openshift.com/api/image-builder-worker/v1/openapi.</p>
+<h2 id="dependencies-1"><a class="header" href="#dependencies-1">Dependencies</a></h2>
+<p>Composer has the following internal and external dependencies.</p>
+<h3 id="internal-1"><a class="header" href="#internal-1">Internal</a></h3>
+<p>Composer relies on Red Hat SSO for authentication.</p>
+<h3 id="external-1"><a class="header" href="#external-1">External</a></h3>
+<ul>
+<li>AWS RDS for data storage. See the section on state.</li>
+<li>Quay as a container registry. Without this, the service cannot be redeployed.</li>
+<li>Github as an upstream repository. Without this, the service cannot be redeployed.</li>
+<li>Gitlab, AWS EC2, and Openstack for upstream testing. Without this changes to the service cannot land.</li>
+</ul>
+<h2 id="service-diagram-1"><a class="header" href="#service-diagram-1">Service Diagram</a></h2>
+<p>See parent page.</p>
+<h2 id="application-success-criteria-1"><a class="header" href="#application-success-criteria-1">Application Success Criteria</a></h2>
+<ol>
+<li>Image builds can be queued successfully</li>
+<li>Jobs can be dequeued successfully and correctly</li>
+<li>Jobs are tracked correctly</li>
+<li>The state of historical or in-flight builds can be queried and introspected successfully</li>
+</ol>
+<h2 id="state-1"><a class="header" href="#state-1">State</a></h2>
+<p>The service depends on a PostgreSQL database, the default postgres12-rds-1 template is used. The
+database stores metadata about each build, making it possible to enumerate past builds as well as
+function as a job queue.</p>
+<p>If the state is lost historical data would be lost, and pending image builds might never get scheduled,
+but the user could still use their existing images if they have saved the necessary information. Data
+loss would not affect the ability to schedule new builds.</p>
+<h2 id="load-testing-1"><a class="header" href="#load-testing-1">Load Testing</a></h2>
+<p>The Image Builder API in console.redhat.com is currently being load tested on a weekly basis with failure
+thresholds reflecting the SLIs. The load tests happen against stage CRC, which is backed by composer in
+api.stage.openshift.com. An example can be found <a href="https://gitlab.com/osbuild/ci/image-builder/-/jobs/1723976612">here</a>.</p>
+<p>More information can be found <a href="https://github.com/osbuild/image-builder/blob/main/test/README.md">upstream</a>.</p>
+<h2 id="capacity-1"><a class="header" href="#capacity-1">Capacity</a></h2>
+<p>The defaults described in App Interface, 1 cpu 512Mi memory per container running in the default three pods are sufficient, and our expectations
+are that this will remain sufficient for the next twelve months.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="image-builder-workers-architecture-document"><a class="header" href="#image-builder-workers-architecture-document">Image Builder Workers Architecture Document</a></h1>
+<h2 id="service-description-2"><a class="header" href="#service-description-2">Service Description</a></h2>
+<p>The <code>workers</code> are a fleet of (for now) amazon EC2 instances, responsible for requesting pending jobs
+from the composer-worker API in AOC, perform jobs as instructed and report back the results. The
+kinds of jobs are:</p>
+<ul>
+<li>determining build instructions for future image builds</li>
+<li>building images</li>
+<li>uploading images to their destination</li>
+<li>registering images in their target platform</li>
+</ul>
+<p>Workers are stateless, apart from their caches, and hence trivially restartable. To build images
+workers need to be running in a VM with kernel access, rather than in a container, and in order
+to upload the results the workers need the right credentials for each of the possible targets. In
+order to request new jobs, the workers need to be issued with RH credentials.</p>
+<h2 id="technology-stack-2"><a class="header" href="#technology-stack-2">Technology Stack</a></h2>
+<p>The service is written in Golang, and the list of vendored dependencies can be found in
+<a href="https://github.com/osbuild/osbuild-composer/blob/main/go.mod">go.mod</a>. The underlying tool is written
+in python3.</p>
+<p>Both the service and underlying tool are built as RPMs and installed into AMIs. Their dependencies are
+specified in their respective .spec files:</p>
+<ul>
+<li>https://github.com/osbuild/osbuild/blob/main/osbuild.spec</li>
+<li>https://github.com/osbuild/osbuild-composer/blob/main/osbuild-composer.spec</li>
+</ul>
+<h2 id="components-2"><a class="header" href="#components-2">Components</a></h2>
+<p>The service consists of a fleet of workers. If no workers are available, no jobs will be built until
+workers are again available. Nothing is lost as jobs will stay in the queue, but everything will
+simply stall.</p>
+<h2 id="routes-2"><a class="header" href="#routes-2">Routes</a></h2>
+<p>The workers expose no routes.</p>
+<h2 id="dependencies-2"><a class="header" href="#dependencies-2">Dependencies</a></h2>
+<p>The workers have the following internal and external dependencies.</p>
+<h3 id="internal-2"><a class="header" href="#internal-2">Internal</a></h3>
+<ul>
+<li>Red Hat SSO for authentication. Without this, the worker cannot request new jobs.</li>
+</ul>
+<h3 id="external-2"><a class="header" href="#external-2">External</a></h3>
+<ul>
+<li>EC2. Without this the workers cannot run.</li>
+<li>EC2, GCP and Azure to upload the respective images. Without this image upload will fail.</li>
+<li>S3 to upload images for download by the user. Without this image upload will fail.</li>
+<li>Packer as a build tool. Without this, the service cannot be redeployed.</li>
+<li>TerraForm as a deployment orchestrator. Without this, the service cannot be redeployed.</li>
+<li>Github as an upstream repository. Without this, the service cannot be redeployed.</li>
+<li>Gitlab, AWS EC2, and Openstack for upstream testing. Without this changes to the service cannot land.</li>
+</ul>
+<h2 id="service-diagram-2"><a class="header" href="#service-diagram-2">Service Diagram</a></h2>
+<p>See parent page.</p>
+<h2 id="application-success-criteria-2"><a class="header" href="#application-success-criteria-2">Application Success Criteria</a></h2>
+<p>The worker fleet is successful if:</p>
+<ol>
+<li>It scales on demand to avoid pending jobs having overly long queue times.</li>
+<li>The jobs are executed in a timely fashion.</li>
+<li>The job error rate (including image builds and uploads) is low.</li>
+</ol>
+<h2 id="state-2"><a class="header" href="#state-2">State</a></h2>
+<p>Workers only have ephemeral state.</p>
+<p>To optimize build-times, workers will keep a cache of previously (partially) built or downloaded
+artifacts if this is lost it will be recreated on demand with no other loss than extra running time.</p>
+<h2 id="load-testing-2"><a class="header" href="#load-testing-2">Load Testing</a></h2>
+<p>Image Builder is currently being load tested on a weekly basis with failure thresholds reflecting the
+SLIs. The load tests happen against stage CRC. An example can be found
+<a href="https://gitlab.com/osbuild/ci/image-builder/-/jobs/1541382293">here</a>.</p>
+<p>The load testing happens against stage, and tests the entire stack, including the workers.</p>
+<h2 id="capacity-2"><a class="header" href="#capacity-2">Capacity</a></h2>
+<p>Increasing the rate at which workers can handle jobs is easily done by scaling up the ASG.</p>
+<p>The workers are also limited by a 2 week image retention period in our cloud accounts. For GCP
+images this means there's can have a maximum of 1000 images stored at any given time. For AWS it's
+limited by the snapshots per region limit (100k). And it's limited by the amount of images that can
+concurrently be imported (20). The latter might pose a problem in future.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="image-builder-koji-integration"><a class="header" href="#image-builder-koji-integration">Image Builder Koji integration</a></h1>
+<p>This document describes how various instances of the <a href="https://koji.build/">Koji</a> build system can and do integrate with the Image Builder service.</p>
+<h2 id="architecture"><a class="header" href="#architecture">Architecture</a></h2>
+<p><code>osbuild-composer</code> can integrate with a <code>Koji</code> instance as an external Content Generator using the <a href="https://github.com/osbuild/koji-osbuild">koji-osbuild</a> plugin. The overview of the integration is described in the <a href="https://github.com/osbuild/koji-osbuild/blob/main/README.md">koji-osbuild project README</a>.</p>
+<p>In short, a <code>Koji</code> instance integrates directly with <code>osbuild-composer</code> API, usually as a separate tenant with a dedicated set of workers.</p>
+<h2 id="technology-stack-3"><a class="header" href="#technology-stack-3">Technology Stack</a></h2>
+<p>The <a href="https://github.com/osbuild/koji-osbuild">koji-osbuild</a> plugin is implemented in Python, and the list of dependencies can be found in the <a href="https://github.com/osbuild/koji-osbuild/blob/main/koji-osbuild.spec">SPEC file</a>.</p>
+<h2 id="building-images-via-koji-integration"><a class="header" href="#building-images-via-koji-integration">Building images via Koji integration</a></h2>
+<p>The <code>koji-osbuild</code> plugin allows one to submit image builds via the Koji Hub API using the <code>osbuildImage</code> task. The accepted arguments schema of the <code>osbuildImage</code> task is described <a href="https://github.com/osbuild/koji-osbuild/blob/cc3e621754d99b3f2a4fcb85bb207bf76a0970ea/plugins/hub/osbuild.py#L12-L225">in the plugin implementation</a>. The <code>koji-osbuild</code> plugin processes the request and submits a new compose request using the <code>osbuild-composer</code> Cloud API. The plugin always sets the <a href="https://github.com/osbuild/osbuild-composer/blob/434362e81ed996e6353360c3311090ae1cbe73a6/internal/cloudapi/v2/openapi.v2.yml#L736-L737"><code>koji</code> property</a> in the compose request, signaling to <code>osbuild-composer</code> that the request is coming from a <code>Koji</code> plugin.</p>
+<p>Images built as part of a compose requests submitted via the <code>Koji</code> plugin are always implicitly uploaded to the respective <code>Koji</code> instance. Since <strong>version 10</strong> of the <code>koji-osbuild</code> plugin, images can be uploaded directly to the appropriate cloud environment, in addition to being uploaded to <code>Koji</code>. More details are below in the <a href="image-builder-service/image-builder-koji.html#cloud-upload">Cloud upload</a> section.</p>
+<p>The <code>koji-osbuild</code> plugin also supports specifying all image customizations supported by the <code>osbuild-composer</code> Cloud API.</p>
+<p>There are currently two easy ways how to trigger the <code>osbuildImage</code> tasks in Koji:</p>
+<ul>
+<li><code>koji-cli</code> - the command line client for interacting with <code>Koji</code>. The prerequisite is to install the <code>koji-osbuild-cli</code> plugin. For more information, run <code>koji osbuild-image --help</code>.</li>
+<li><a href="https://pagure.io/pungi">Pungi</a> - a distribution compose tool. <code>Pungi</code> interacts directly with the <code>Koji</code> Hub API and is able to submit <code>osbuildImage</code> tasks as part of a distribution compose. The details of how to configure <code>Pungi</code> to trigger image builds are described in the <a href="https://docs.pagure.org/pungi/configuration.html#osbuild-composer-for-building-images">project documentation</a>.</li>
+</ul>
+<h3 id="cloud-upload"><a class="header" href="#cloud-upload">Cloud upload</a></h3>
+<h4 id="prerequisites"><a class="header" href="#prerequisites">Prerequisites</a></h4>
+<ul>
+<li><code>koji-osbuild</code> version &gt;= 10</li>
+<li><code>osbuild-composer</code> version &gt;= 58</li>
+</ul>
+<h4 id="details"><a class="header" href="#details">Details</a></h4>
+<p>Images built via the <code>Koji</code> integration can be automatically uploaded to the appropriate cloud environment, in addition to the <code>Koji</code> instance. In order for this to happen, one must provide <em>upload_options</em> when using the <code>osbuildImage</code> task and the integrated <code>osbuild-composer</code> instance must be configured appropriately to be able to upload to the respective cloud environments.</p>
+<p>Currently supported <em>upload_options</em> are:</p>
+<ul>
+<li>AWS EC2</li>
+<li>AWS S3</li>
+<li>Azure (as an image)</li>
+<li>GCP</li>
+<li>Container registry</li>
+</ul>
+<p>Please note, that each image type can be uploaded only to its respective cloud target, represented by <em>upload_options</em> (e.g. the <code>ami</code> image can be uploaded only to <code>AWS EC2</code>, <code>gce</code> image can be uploaded only to <code>GCP</code>, etc.).</p>
+<p>The allowed <em>upload_options</em> schema is defined in the <a href="https://github.com/osbuild/koji-osbuild/blob/cc3e621754d99b3f2a4fcb85bb207bf76a0970ea/plugins/hub/osbuild.py#L110-L118"><code>koji-osbuild</code> Hub plugin</a> and currently matches the <a href="https://github.com/osbuild/osbuild-composer/blob/434362e81ed996e6353360c3311090ae1cbe73a6/internal/cloudapi/v2/openapi.v2.yml#L809-L815"><code>osbuild-composer</code> Cloud API <code>UploadOptions</code></a>.</p>
+<p>If the compose request contains multiple image requests (meaning that multiple images will be built), the provided <em>upload_options</em> will be used as is for all images (with all its consequences).</p>
+<p>All the necessary data to locate the image in the cloud is attached by the <code>koji-osbuild</code> plugin to the image build task in <code>Koji</code> as <code>compose-status.json</code> file. Below is an example of such file:</p>
+<pre><code class="language-json">{
+    &quot;image_statuses&quot;: [
+        {
+            &quot;status&quot;: &quot;success&quot;,
+            &quot;upload_status&quot;: {
+                &quot;options&quot;: {
+                    &quot;ami&quot;: &quot;ami-02e34403c421dfc17&quot;,
+                    &quot;region&quot;: &quot;us-east-1&quot;
+                },
+                &quot;status&quot;: &quot;success&quot;,
+                &quot;type&quot;: &quot;aws&quot;
+            }
+        }
+    ],
+    &quot;koji_build_id&quot;: 1,
+    &quot;koji_task_id&quot;: null,
+    &quot;status&quot;: &quot;success&quot;
+}
+</code></pre>
+<h4 id="cloud-upload-via-koji-cli"><a class="header" href="#cloud-upload-via-koji-cli">Cloud upload via <code>koji-cli</code></a></h4>
+<p>In order to upload images to the cloud when using <code>koji-cli</code>, one must first create a JSON file with the appropriate <em>upload_options</em>.</p>
+<p>Example <code>gcp_upload_options.json</code>:</p>
+<pre><code class="language-json">{
+    &quot;region&quot;: &quot;eu&quot;,
+    &quot;bucket&quot;: &quot;my-bucket&quot;,
+    &quot;share_with_accounts&quot;: [&quot;alice@example.org&quot;]
+}
+</code></pre>
+<p>Then add the <code>--upload-options=gcp_upload_options.json</code> argument to the command line when calling <code>koji</code> CLI.</p>
+<h4 id="cloud-upload-via-pungi"><a class="header" href="#cloud-upload-via-pungi">Cloud upload via <code>Pungi</code></a></h4>
+<p>In order to upload images to the cloud, when using <code>Pungi</code> to trigger image builds, one must specify the <code>upload_options</code> option in the configuration dictionary as described in the <a href="https://docs.pagure.org/pungi/configuration.html#osbuild-composer-for-building-images">project documentation</a>.</p>
+<p>Please note that the support for cloud upload has been merged to the <code>Pungi</code> project after the <strong>4.3.6</strong> release. Therefore, if you want to take advantage of this feature, make sure to use version higher than <strong>4.3.6</strong>.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="developer-guide"><a class="header" href="#developer-guide">Developer guide</a></h1>
 <p>In this section, you will find a description of the source code in <code>osbuild</code> organization.</p>
 <p>The following scheme describes how separate components communicate with each other:
 <img src="developer-guide/osbuild-composer.svg" alt="" /></p>
 <p>In the very basic use case where <code>osbuild-composer</code> is running locally, the &quot;pool of workers&quot; also lives on the user's host machine. The <code>osbuild-composer</code> and <code>osbuild-worker</code> processes are spawned by systemd. We don't support any other means of spawning these processes, as they rely on systemd to open sockets, create state directories etc. Additionally, <code>osbuild-worker</code> spawns osbuild as a subprocess to create the image itself. The whole image building machinery is spawned from a user process, for example, <code>composer-cli</code>.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="workflow"><a class="header" href="#workflow">Workflow</a></h1>
-<h2 id="adding-news"><a class="header" href="#adding-news">Adding news</a></h2>
-<p>When adding a new feature to a project which should be included in the release notes, or used for
-announcements, please add it under <code>docs/news</code> in the form of a short markdown document.</p>
-<p>Bug fixes, test changes, etc... should not be announced there.</p>
 <h2 id="git-workflow"><a class="header" href="#git-workflow">Git Workflow</a></h2>
 <h3 id="commits"><a class="header" href="#commits">Commits</a></h3>
 <p>Commits should be easy to read.</p>
@@ -905,12 +2249,11 @@ mind as well.</p>
 <h3 id="pull-requests"><a class="header" href="#pull-requests">Pull requests</a></h3>
 <p>A pull request should be one or more commits which form a coherent unit, it can be
 rebased/rewritten/force-pushed until it's fit for merging.</p>
-<p>Pull requests are usually opened against the main branch. They should be opened from a developer's
-own fork to avoid a lot of random branches on the origin.</p>
+<p>How the PR developed, and the iterations it went through, should not be visible in the git
+history. The end result counts: a certain amount of commits, each one forming a logical unit of
+changes. Avoid 'fix-up' commits which tweak previous commits in the PR.</p>
+<p>Pull requests should be opened from a developer's own fork to avoid random branches on the origin.</p>
 <p>Each pull request should be reviewed, and the CI should pass.</p>
-<p>A pull request can be marked as draft, if it shouldn't be reviewed yet. But once it's ready, do not
-hesitate to add reviewers. If you're unsure who to add as a reviewer, ask in the irc channel
-(#osbuild on Libera Chat).</p>
 <p>Once a pull request is ready to be merged, it should be merged via the <code>Rebase and merge</code> or <code>Squash and merge</code> option. This avoids merge commits on the main branch.</p>
 <h3 id="branches"><a class="header" href="#branches">Branches</a></h3>
 <p>Force-pushing to, or rebasing the main branch (or other release branches) is not allowed. Avoid
@@ -941,7 +2284,7 @@ available, so do make use of those.</p>
 <h3 id="javascript"><a class="header" href="#javascript">Javascript</a></h3>
 <p>Projects like <a href="https://github.com/osbuild/cockpit-composer/">Cockpit Composer</a> use eslint to enforce
 style.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="osbuild"><a class="header" href="#osbuild">osbuild</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="osbuild-1"><a class="header" href="#osbuild-1">osbuild</a></h1>
 <p>A CLI tool for building OS images. It takes manifest as an input and produces an image as an output. The manifest consists of:</p>
 <ul>
 <li>sources section</li>
@@ -1175,6 +2518,35 @@ find . -maxdepth 2 -type f -executable -name 'org.osbuild.*' -print0 |
    done
 </code></pre>
 <p>Now run the script and use the entrypoint to execute OSBuild from git checkout.</p>
+<h2 id="stage-development"><a class="header" href="#stage-development">Stage development</a></h2>
+<h3 id="stage-unit-testing"><a class="header" href="#stage-unit-testing">Stage unit testing</a></h3>
+<p>To update a stage unit test, modify appropriate <code>test/data/stages/&lt;stage_suffix&gt;/b.mpp.json</code>.</p>
+<p>Regenerate testing manifests:</p>
+<pre><code class="language-shell">make test-data
+</code></pre>
+<p>You can run <code>osbuild</code> stage test only for a specific stage:</p>
+<pre><code class="language-shell">sudo python3 -m pytest test/run/test_stages.py -k test_&lt;stage_suffix&gt;
+</code></pre>
+<p>Based on the result of the unit test adjust <code>test/data/stages/&lt;stage_suffix&gt;/diff.json</code></p>
+<h3 id="inspecting-filesystem-tree-modified-by-the-stage-using-unit-test-manifest"><a class="header" href="#inspecting-filesystem-tree-modified-by-the-stage-using-unit-test-manifest">Inspecting filesystem tree modified by the stage using unit test manifest</a></h3>
+<pre><code class="language-shell"># needed only first time
+mkdir -p store/
+mkdir -p output/
+
+rm -rf rpmbuild
+make rpm
+sudo dnf install -y rpmbuild/RPMS/noarch/*.rpm
+sudo rm -rf store/*
+
+# This command assumes that the latest pipeline stage, which you want to inspect has index &quot;1&quot;.
+# If this is not true, adjust the index in the `jq .pipeline.stages[1].id`
+STAGE_ID=$(osbuild --inspect test/data/stages/&lt;stage_suffix&gt;/b.json | jq .pipeline.stages[1].id | tr -d '&quot;')
+sudo osbuild --store store/ --checkpoint &quot;$STAGE_ID&quot; --export &quot;$STAGE_ID&quot; --output-directory output/ test/data/stages/&lt;stage_suffix&gt;/b.json
+</code></pre>
+<p>The modified filesystem tree will be located in <strong>store/objects/&lt;stage_id&gt;/</strong></p>
+<h3 id="special-case---the-stage-requires-additional-dependency"><a class="header" href="#special-case---the-stage-requires-additional-dependency">Special case - the stage requires additional dependency</a></h3>
+<p>If the additional dependency is not present int the <strong>build</strong> pipeline of the stage test manifest, you'll have to fix it. Modify the appropriate manifest imported in the <strong>build</strong> pipeline of the <code>b.mpp.json</code> file. This may be e.g. the <code>f34-build.json</code> present in <code>test/data/manifests/</code>. Modify it's &quot;mpp&quot; version, e.g. <code>test/data/manifests/f34-build.mpp.json</code> and run <code>make test-data</code> in the git checkout root.</p>
+<p>osbuild CI runs unit tests inside a special <code>osbuild-ci</code> container. If the stage imports a 3rd party Python module, then you will have to make sure, that this Python module is present in the container image. Adding the dependency to the <strong>build</strong> pipeline will cover only the case when stages are tested, but not other types of unit testing. In order to extend the <code>osbuild-ci</code> image, you need to submit a Pull Request against the <a href="https://github.com/osbuild/containers">OSBuild Containers</a> repository.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="osbuild-composer"><a class="header" href="#osbuild-composer">osbuild-composer</a></h1>
 <p>It is a web service for building OS images. The core of <code>osbuild-composer</code>, which is common to all APIs, is osbuild manifests generation a job queuing. If an operating system is to be supported by <code>osbuild-composer</code>, it needs the manifest generation code in <code>internal/distro</code> directory. So far, we only focus on RPM based distributions, such as Fedora and RHEL. The queuing mechanism is under heavy development at the moment.</p>
 <h2 id="interfacing-with-dnf-package-manager"><a class="header" href="#interfacing-with-dnf-package-manager">Interfacing with dnf package manager</a></h2>
@@ -1187,12 +2559,16 @@ find . -maxdepth 2 -type f -executable -name 'org.osbuild.*' -print0 |
 <h2 id="local-api---weldr"><a class="header" href="#local-api---weldr">Local API - Weldr</a></h2>
 <p>This API comes from the <code>Lorax-composer project</code>. <code>osbuild-composer</code> was created as a drop-in replacement for Lorax which influenced many design decisions. It uses Unix-Domain socket, so it is meant for local usage only. There are two clients:</p>
 <ul>
-<li>composer-cli</li>
-<li>cockpit-composer (branded as Image Builder in the Cockpit console)</li>
+<li>composer-cli / <a href="https://github.com/osbuild/weldr-client">weldr-client</a></li>
+<li><a href="https://github.com/osbuild/cockpit-composer">cockpit-composer</a> (branded as Image Builder in the Cockpit console)</li>
 </ul>
 <p>Activate this API by invoking <code>systemctl start osbuild-composer.socket</code>. Systemd will create a socket at <code>/run/weldr/api.socket</code>.</p>
-<h2 id="remote-apis---cloud-and-koji"><a class="header" href="#remote-apis---cloud-and-koji">Remote APIs - Cloud and Koji</a></h2>
-<p>Both are under heavy development.</p>
+<h2 id="remote-api---cloud-api"><a class="header" href="#remote-api---cloud-api">Remote API - Cloud API</a></h2>
+<p>This is the <code>/api/image-builder-composer/v2/</code> API endpoint. There are currently two clients, which are integrating with <code>osbuild-composer</code> using this API:</p>
+<ul>
+<li><a href="https://github.com/osbuild/image-builder">image-builder</a>, described in more detail in the <a href="developer-guide/../image-builder-service/architecture.html">Image Builder service architecture</a> document.</li>
+<li><a href="https://github.com/osbuild/koji-osbuild">koji-osbuild</a> plugin, which integrates <code>osbuild-composer</code> with the <a href="https://koji.build/">Koji</a> build system.</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="latest-rpm-builds"><a class="header" href="#latest-rpm-builds">Latest RPM builds</a></h1>
 <p>While developing osbuild and osbuild composer it is convenient to download the latest RPM builds directly from upstream. The repositories in the osbuild organization don't use any automation from Copr or Packit. Instead, the RPMs are built directly in the Jenkins CI and stored in AWS under the commit hash which allows anyone to download precisely the version built from a desired commit.</p>
 <p>The URL is specified in the <code>mockbuild.sh</code> scripts in the osbuild and osbuild-composer repositories:</p>
@@ -1341,7 +2717,14 @@ The &quot;test cases&quot; are defined in <code>test/cases/manifests</code> and 
 <p>This guide describes the process of releasing osbuild and osbuild-composer to <a href="https://github.com/osbuild/osbuild">upstream</a>, into <a href="https://src.fedoraproject.org/rpms/osbuild">Fedora</a> and <a href="https://gitlab.com/redhat/centos-stream/rpms/osbuild">CentOS Stream</a>.</p>
 <h2 id="clone-the-release-helpers"><a class="header" href="#clone-the-release-helpers">Clone the release helpers</a></h2>
 <p>Go to the <a href="https://github.com/osbuild/maintainer-tools">maintainer-tools repository</a>, clone the repository and run <code>pip install -r requirements.txt</code> in order to get all the dependencies to be able to execute the <code>release.py</code> and <code>update-distgit.py</code> scripts.</p>
+<p>It's also advised to set a GitHub personal access token, otherwise you might run into API usage quotas. Go to <a href="https://github.com/settings/tokens">Personal access tokens</a> on GitHub and create a new token with scope <code>public_repo</code>. Now, create a new packit user configuration at <code>~/.config/packit.yaml</code> and paste there the following content:</p>
+<pre><code>authentication:
+  github.com:
+    token: [YOUR_GITHUB_PERSONAL_ACCESS_TOKEN]
+</code></pre>
 <h2 id="upstream-release"><a class="header" href="#upstream-release">Upstream release</a></h2>
+<p>Note: <a href="https://github.com/osbuild/release-action/tree/create-tag">Upstream releases are done automatically</a> on a fortnightly alternating schedule, meaning one week we release osbuild and then the next week we release osbuild-composer.</p>
+<h3 id="manual-upstream-release"><a class="header" href="#manual-upstream-release">Manual upstream release</a></h3>
 <p>Navigate to your local repository in your terminal and call the <code>release.py</code> script. It will interactively take you through the following steps:</p>
 <ol>
 <li>
@@ -1369,33 +2752,12 @@ The &quot;test cases&quot; are defined in <code>test/cases/manifests</code> and 
 <li>Call <code>fedpkg build</code> to schedule Koji builds for each active Fedora release (or: dist-git branch)</li>
 <li>Update <a href="https://bodhi.fedoraproject.org/">Bodhi</a> with the latest release</li>
 </ol>
-<h2 id="centos-stream-9-release"><a class="header" href="#centos-stream-9-release">CentOS Stream 9 release</a></h2>
-<p>Then our centos-bot takes over and performs the following steps:</p>
-<ol>
-<li>Check if there is a more recent release in Fedora rawhide than in CentOS Stream 9</li>
-<li>Update dist-git in schutzbot's respective fork with the latest release</li>
-<li>Propose a merge request against the main repository</li>
-</ol>
-<p>The following steps are manual and not part of the centos-bot automation. Before starting these steps, make sure you have
-the required tools installed, i.e. <code>centpkg</code>,<code>rhelpkg</code> (see the developer guide prerequisites for more details). Additionally, you can view the centos-bot Dockerfile for reference.<br />
-The remaining steps are listed in more detail below:</p>
-<ol>
-<li>Go to the merge request, open the Pipeline tab and click &quot;Run pipeline&quot; (schutzbot is an external contributor, so CI is blocked by default)</li>
-<li>Fork the OSCI pagure repo</li>
-<li>Cherry-pick the commit created by schutzbot and push it to OSCI's pagure</li>
-<li>Download the tarball of the release and run <code>rhpkg new-sources &lt;path-to-tarball&gt;</code> (this will upload the tarball to the lookaside cache)</li>
-<li>Create a pull request on OSCI's pagure</li>
-<li>Wait for the tests to finish, check both your pull request and the OSCI Dashboard for gating test results</li>
-<li>If all tests are green (or: okay/waivable) proceed with closing your PR on OSCI's pagure</li>
-<li>Merge schutzbot's merge request on gitlab.com</li>
-<li>Run <code>centpkg clone $project</code> to get the latest <code>c9s</code> branch (or a simple <code>git pull</code> if you already have a local copy)</li>
-<li>Lastly, run <code>centpkg build</code> from the <code>c9s</code> branch of the project</li>
-</ol>
-<p>The automation will take care of the rest, i.e. syncing to RHEL9's dist-git and updating errata.</p>
+<h2 id="centos-stream--rhel-releases"><a class="header" href="#centos-stream--rhel-releases">CentOS Stream / RHEL releases</a></h2>
+<p>If you are a Red Hat employee, please continue reading about this in our internal release guide.</p>
 <h2 id="spreading-the-word-on-osbuildorg"><a class="header" href="#spreading-the-word-on-osbuildorg">Spreading the word on osbuild.org</a></h2>
 <p>The last of releasing a new version is to create a new post on osbuild.org. Just open a PR in <a href="https://github.com/osbuild/osbuild.github.io">osbuild/osbuild.github.io</a>. You can find a lot of inspiration in existing release posts.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="glossary"><a class="header" href="#glossary">Glossary</a></h1>
-<table><thead><tr><th>Term</th><th>Explanation</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Term</th><th>Explanation</th></tr></thead><tbody>
 <tr><td>AMI</td><td>Amazon Machine Image (image type)</td></tr>
 <tr><td>Blueprint</td><td>Definition of customizations in the image</td></tr>
 <tr><td>Compose</td><td>Request from the user that produces one or more images. Images in a single compose are, in theory, the same, but for different platforms, such as Azure or AWS. In practice they are slightly different because every cloud platform requires a different package set and system configuration. osbuild-composer running the Weldr API can only create one image at a time, so one compose maps directly to one image build. It can map to multiple image builds when used with other APIs, such as the Koji API.</td></tr>
@@ -1410,36 +2772,48 @@ The remaining steps are listed in more detail below:</p>
 <tr><td>Repository overrides</td><td>osbuild-composer uses its own set of repository definitions. In case a user wants to use custom repositories, &quot;overrides&quot; can be created in /etc/osbuild-composer</td></tr>
 <tr><td>Weldr API</td><td>Local HTTP API used for communication between composer-cli/cockpit-composer and osbuild-composer. It comes from the lorax-composer project.</td></tr>
 </tbody></table>
-
+</div>
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
+
+
                         <div style="clear: both"></div>
                     </nav>
                 </div>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
             </nav>
 
         </div>
 
-        <script type="text/javascript">
+
+
+
+        <script>
             window.playground_copyable = true;
         </script>
-        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
-        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
 
         <!-- Custom JS scripts -->
-        <script type="text/javascript">
+
+        <script>
         window.addEventListener('load', function() {
             window.setTimeout(window.print, 100);
         });
         </script>
+
+    </div>
     </body>
 </html>

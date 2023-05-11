@@ -4,8 +4,10 @@
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>Releasing - OSBuild guides</title>
+
+
         <!-- Custom HTML head -->
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
@@ -16,25 +18,29 @@
         <link rel="stylesheet" href="../css/general.css">
         <link rel="stylesheet" href="../css/chrome.css">
         <link rel="stylesheet" href="../css/print.css" media="print">
+
         <!-- Fonts -->
         <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
         <link rel="stylesheet" href="../fonts/fonts.css">
+
         <!-- Highlight.js Stylesheets -->
         <link rel="stylesheet" href="../highlight.css">
         <link rel="stylesheet" href="../tomorrow-night.css">
         <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
+
     </head>
     <body>
+    <div id="body-container">
         <!-- Provide site root to javascript -->
-        <script type="text/javascript">
+        <script>
             var path_to_root = "../";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
 
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
-        <script type="text/javascript">
+        <script>
             try {
                 var theme = localStorage.getItem('mdbook-theme');
                 var sidebar = localStorage.getItem('mdbook-sidebar');
@@ -50,7 +56,7 @@
         </script>
 
         <!-- Set the theme before any content is loaded, prevents flash -->
-        <script type="text/javascript">
+        <script>
             var theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
@@ -62,12 +68,14 @@
         </script>
 
         <!-- Hide / unhide sidebar before it is displayed -->
-        <script type="text/javascript">
+        <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -75,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../user-guide/user-guide.html"><strong aria-hidden="true">1.</strong> User guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../user-guide/osbuild-composer-description.html"><strong aria-hidden="true">1.1.</strong> osbuild-composer description</a></li><li class="chapter-item expanded "><a href="../user-guide/installation.html"><strong aria-hidden="true">1.2.</strong> Installation and configuration</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../user-guide/managing-repositories.html"><strong aria-hidden="true">1.2.1.</strong> Managing repositories</a></li></ol></li><li class="chapter-item expanded "><a href="../user-guide/building-an-image-from-cli.html"><strong aria-hidden="true">1.3.</strong> Creating images with the CLI interface</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../user-guide/building-ostree-images.html"><strong aria-hidden="true">1.3.1.</strong> Building OSTree image</a></li><li class="chapter-item expanded "><a href="../user-guide/edge-container+installer.html"><strong aria-hidden="true">1.3.2.</strong> Building OSTree container and installer</a></li></ol></li><li class="chapter-item expanded "><a href="../user-guide/uploading-to-cloud.html"><strong aria-hidden="true">1.4.</strong> Uploading cloud images</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../user-guide/uploading-to-aws.html"><strong aria-hidden="true">1.4.1.</strong> Uploading an image to AWS</a></li><li class="chapter-item expanded "><a href="../user-guide/uploading-to-azure.html"><strong aria-hidden="true">1.4.2.</strong> Uploading an image to Microsoft Azure</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../blueprint-reference/blueprint-reference.html"><strong aria-hidden="true">2.</strong> Blueprint reference</a></li><li class="chapter-item expanded "><a href="../developer-guide/developer-guide.html"><strong aria-hidden="true">3.</strong> Developer guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../developer-guide/workflow.html"><strong aria-hidden="true">3.1.</strong> Workflow</a></li><li class="chapter-item expanded "><a href="../developer-guide/code-style.html"><strong aria-hidden="true">3.2.</strong> Code style</a></li><li class="chapter-item expanded "><a href="../developer-guide/osbuild.html"><strong aria-hidden="true">3.3.</strong> OSBuild</a></li><li class="chapter-item expanded "><a href="../developer-guide/osbuild-composer.html"><strong aria-hidden="true">3.4.</strong> osbuild-composer</a></li><li class="chapter-item expanded "><a href="../developer-guide/latest-rpm-builds.html"><strong aria-hidden="true">3.5.</strong> Latest RPM builds</a></li><li class="chapter-item expanded "><a href="../developer-guide/testing.html"><strong aria-hidden="true">3.6.</strong> Testing strategy</a></li><li class="chapter-item expanded "><a href="../developer-guide/releasing.html" class="active"><strong aria-hidden="true">3.7.</strong> Releasing</a></li><li class="chapter-item expanded "><a href="../developer-guide/glossary.html"><strong aria-hidden="true">3.8.</strong> Glossary</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../user-guide/user-guide.html"><strong aria-hidden="true">2.</strong> User guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../user-guide/osbuild-composer-description.html"><strong aria-hidden="true">2.1.</strong> osbuild-composer description</a></li><li class="chapter-item expanded "><a href="../user-guide/installation.html"><strong aria-hidden="true">2.2.</strong> Installation and configuration</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../user-guide/managing-repositories.html"><strong aria-hidden="true">2.2.1.</strong> Managing repositories</a></li><li class="chapter-item expanded "><a href="../user-guide/container-auth.html"><strong aria-hidden="true">2.2.2.</strong> Container registry credentials</a></li></ol></li><li class="chapter-item expanded "><a href="../user-guide/building-an-image-from-cli.html"><strong aria-hidden="true">2.3.</strong> Creating images with the CLI interface</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../user-guide/building-ostree-images.html"><strong aria-hidden="true">2.3.1.</strong> Building OSTree image</a></li><li class="chapter-item expanded "><a href="../user-guide/edge-container+installer.html"><strong aria-hidden="true">2.3.2.</strong> Building OSTree container and installer</a></li></ol></li><li class="chapter-item expanded "><a href="../user-guide/uploading-to-cloud.html"><strong aria-hidden="true">2.4.</strong> Uploading cloud images</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../user-guide/uploading-to-aws.html"><strong aria-hidden="true">2.4.1.</strong> Uploading an image to AWS</a></li><li class="chapter-item expanded "><a href="../user-guide/uploading-to-aws-s3.html"><strong aria-hidden="true">2.4.2.</strong> Uploading an image to AWS S3</a></li><li class="chapter-item expanded "><a href="../user-guide/uploading-to-gcp.html"><strong aria-hidden="true">2.4.3.</strong> Uploading an image to GCP</a></li><li class="chapter-item expanded "><a href="../user-guide/uploading-to-generic-s3.html"><strong aria-hidden="true">2.4.4.</strong> uploading an image to Generic S3</a></li><li class="chapter-item expanded "><a href="../user-guide/uploading-to-azure.html"><strong aria-hidden="true">2.4.5.</strong> Uploading an image to Microsoft Azure</a></li><li class="chapter-item expanded "><a href="../user-guide/uploading-to-oci.html"><strong aria-hidden="true">2.4.6.</strong> Uploading an image to OCI</a></li></ol></li><li class="chapter-item expanded "><a href="../user-guide/uploading-to-registry.html"><strong aria-hidden="true">2.5.</strong> Uploading container images</a></li><li class="chapter-item expanded "><a href="../user-guide/oscap-remediation.html"><strong aria-hidden="true">2.6.</strong> OpenSCAP image remediation</a></li><li class="chapter-item expanded "><a href="../user-guide/repository-customizations.html"><strong aria-hidden="true">2.7.</strong> Repository customizations</a></li></ol></li><li class="chapter-item expanded "><a href="../blueprint-reference/blueprint-reference.html"><strong aria-hidden="true">3.</strong> Blueprint Reference</a></li><li class="chapter-item expanded "><a href="../image-builder-service/architecture.html"><strong aria-hidden="true">4.</strong> Image Builder service architecture</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../image-builder-service/image-builder-crc.html"><strong aria-hidden="true">4.1.</strong> Backend</a></li><li class="chapter-item expanded "><a href="../image-builder-service/image-builder-composer.html"><strong aria-hidden="true">4.2.</strong> Composer</a></li><li class="chapter-item expanded "><a href="../image-builder-service/image-builder-workers.html"><strong aria-hidden="true">4.3.</strong> Workers</a></li><li class="chapter-item expanded "><a href="../image-builder-service/image-builder-koji.html"><strong aria-hidden="true">4.4.</strong> Koji integration</a></li></ol></li><li class="chapter-item expanded "><a href="../developer-guide/developer-guide.html"><strong aria-hidden="true">5.</strong> Developer guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../developer-guide/workflow.html"><strong aria-hidden="true">5.1.</strong> Workflow</a></li><li class="chapter-item expanded "><a href="../developer-guide/code-style.html"><strong aria-hidden="true">5.2.</strong> Code style</a></li><li class="chapter-item expanded "><a href="../developer-guide/osbuild.html"><strong aria-hidden="true">5.3.</strong> OSBuild</a></li><li class="chapter-item expanded "><a href="../developer-guide/osbuild-composer.html"><strong aria-hidden="true">5.4.</strong> osbuild-composer</a></li><li class="chapter-item expanded "><a href="../developer-guide/latest-rpm-builds.html"><strong aria-hidden="true">5.5.</strong> Latest RPM builds</a></li><li class="chapter-item expanded "><a href="../developer-guide/testing.html"><strong aria-hidden="true">5.6.</strong> Testing strategy</a></li><li class="chapter-item expanded "><a href="../developer-guide/releasing.html" class="active"><strong aria-hidden="true">5.7.</strong> Releasing</a></li><li class="chapter-item expanded "><a href="../developer-guide/glossary.html"><strong aria-hidden="true">5.8.</strong> Glossary</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -83,7 +91,7 @@
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                <div id="menu-bar-hover-placeholder"></div>
+                                <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky bordered">
                     <div class="left-buttons">
                         <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
@@ -93,7 +101,7 @@
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
@@ -110,6 +118,7 @@
                         <a href="../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
+
                     </div>
                 </div>
 
@@ -123,8 +132,9 @@
                         </ul>
                     </div>
                 </div>
+
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
-                <script type="text/javascript">
+                <script>
                     document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
                     document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
                     Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
@@ -138,7 +148,14 @@
 <p>This guide describes the process of releasing osbuild and osbuild-composer to <a href="https://github.com/osbuild/osbuild">upstream</a>, into <a href="https://src.fedoraproject.org/rpms/osbuild">Fedora</a> and <a href="https://gitlab.com/redhat/centos-stream/rpms/osbuild">CentOS Stream</a>.</p>
 <h2 id="clone-the-release-helpers"><a class="header" href="#clone-the-release-helpers">Clone the release helpers</a></h2>
 <p>Go to the <a href="https://github.com/osbuild/maintainer-tools">maintainer-tools repository</a>, clone the repository and run <code>pip install -r requirements.txt</code> in order to get all the dependencies to be able to execute the <code>release.py</code> and <code>update-distgit.py</code> scripts.</p>
+<p>It's also advised to set a GitHub personal access token, otherwise you might run into API usage quotas. Go to <a href="https://github.com/settings/tokens">Personal access tokens</a> on GitHub and create a new token with scope <code>public_repo</code>. Now, create a new packit user configuration at <code>~/.config/packit.yaml</code> and paste there the following content:</p>
+<pre><code>authentication:
+  github.com:
+    token: [YOUR_GITHUB_PERSONAL_ACCESS_TOKEN]
+</code></pre>
 <h2 id="upstream-release"><a class="header" href="#upstream-release">Upstream release</a></h2>
+<p>Note: <a href="https://github.com/osbuild/release-action/tree/create-tag">Upstream releases are done automatically</a> on a fortnightly alternating schedule, meaning one week we release osbuild and then the next week we release osbuild-composer.</p>
+<h3 id="manual-upstream-release"><a class="header" href="#manual-upstream-release">Manual upstream release</a></h3>
 <p>Navigate to your local repository in your terminal and call the <code>release.py</code> script. It will interactively take you through the following steps:</p>
 <ol>
 <li>
@@ -166,29 +183,8 @@
 <li>Call <code>fedpkg build</code> to schedule Koji builds for each active Fedora release (or: dist-git branch)</li>
 <li>Update <a href="https://bodhi.fedoraproject.org/">Bodhi</a> with the latest release</li>
 </ol>
-<h2 id="centos-stream-9-release"><a class="header" href="#centos-stream-9-release">CentOS Stream 9 release</a></h2>
-<p>Then our centos-bot takes over and performs the following steps:</p>
-<ol>
-<li>Check if there is a more recent release in Fedora rawhide than in CentOS Stream 9</li>
-<li>Update dist-git in schutzbot's respective fork with the latest release</li>
-<li>Propose a merge request against the main repository</li>
-</ol>
-<p>The following steps are manual and not part of the centos-bot automation. Before starting these steps, make sure you have
-the required tools installed, i.e. <code>centpkg</code>,<code>rhelpkg</code> (see the developer guide prerequisites for more details). Additionally, you can view the centos-bot Dockerfile for reference.<br />
-The remaining steps are listed in more detail below:</p>
-<ol>
-<li>Go to the merge request, open the Pipeline tab and click &quot;Run pipeline&quot; (schutzbot is an external contributor, so CI is blocked by default)</li>
-<li>Fork the OSCI pagure repo</li>
-<li>Cherry-pick the commit created by schutzbot and push it to OSCI's pagure</li>
-<li>Download the tarball of the release and run <code>rhpkg new-sources &lt;path-to-tarball&gt;</code> (this will upload the tarball to the lookaside cache)</li>
-<li>Create a pull request on OSCI's pagure</li>
-<li>Wait for the tests to finish, check both your pull request and the OSCI Dashboard for gating test results</li>
-<li>If all tests are green (or: okay/waivable) proceed with closing your PR on OSCI's pagure</li>
-<li>Merge schutzbot's merge request on gitlab.com</li>
-<li>Run <code>centpkg clone $project</code> to get the latest <code>c9s</code> branch (or a simple <code>git pull</code> if you already have a local copy)</li>
-<li>Lastly, run <code>centpkg build</code> from the <code>c9s</code> branch of the project</li>
-</ol>
-<p>The automation will take care of the rest, i.e. syncing to RHEL9's dist-git and updating errata.</p>
+<h2 id="centos-stream--rhel-releases"><a class="header" href="#centos-stream--rhel-releases">CentOS Stream / RHEL releases</a></h2>
+<p>If you are a Red Hat employee, please continue reading about this in our internal release guide.</p>
 <h2 id="spreading-the-word-on-osbuildorg"><a class="header" href="#spreading-the-word-on-osbuildorg">Spreading the word on osbuild.org</a></h2>
 <p>The last of releasing a new version is to create a new post on osbuild.org. Just open a PR in <a href="https://github.com/osbuild/osbuild.github.io">osbuild/osbuild.github.io</a>. You can find a lot of inspiration in existing release posts.</p>
 
@@ -199,9 +195,11 @@ The remaining steps are listed in more detail below:</p>
                             <a rel="prev" href="../developer-guide/testing.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
+
                             <a rel="next" href="../developer-guide/glossary.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
+
                         <div style="clear: both"></div>
                     </nav>
                 </div>
@@ -211,6 +209,7 @@ The remaining steps are listed in more detail below:</p>
                     <a rel="prev" href="../developer-guide/testing.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
+
                     <a rel="next" href="../developer-guide/glossary.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
@@ -218,16 +217,25 @@ The remaining steps are listed in more detail below:</p>
 
         </div>
 
-        <script type="text/javascript">
+
+
+
+        <script>
             window.playground_copyable = true;
         </script>
-        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
 
         <!-- Custom JS scripts -->
+
+
+    </div>
     </body>
 </html>
